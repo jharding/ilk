@@ -35,8 +35,8 @@ app.configure('development', function(){
     force: true,
     debug: true,
     compress: false,
-    src: __dirname + '/src/less',
-    dest: __dirname + '/assets/css'
+    src: __dirname + '/src',
+    dest: __dirname + '/assets'
   }));
 });
 
