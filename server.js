@@ -31,13 +31,6 @@ app.configure(function(){
 
 app.configure('development', function(){
   app.use(express.errorHandler());
-  app.use(require('less-middleware')({
-    force: true,
-    debug: true,
-    compress: false,
-    src: __dirname + '/src',
-    dest: __dirname + '/assets'
-  }));
 });
 
 // routes

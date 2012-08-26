@@ -10,5 +10,9 @@
     "hjs": "*",
     "less-middleware": "*",
     "express-layout": "*"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.0",
+    "grunt-less": "*"
   }
 }
