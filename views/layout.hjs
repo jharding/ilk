@@ -4,13 +4,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title></title>
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  {{{content}}} 
+  <div class='sticky-footer-wrapper'>
+    <header class='container container-header'>
+      <h1>Ilk</h1>
+    </header>
+    
+    <div class='container container-main'>
+      {{{content}}} 
+    </div>
+  </div>
   
+  <footer class='container container-footer'></footer>
   {{>partials/google_analytics}}
 </body>
 </html>
