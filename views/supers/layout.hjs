@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang='en'>
 <head>
   <meta charset="utf-8">
@@ -10,16 +11,23 @@
 </head>
 <body>
   <div class='sticky-footer-wrapper'>
-    <header class='container container-header'>
-      <h1>Ilk</h1>
+    <header>
+      <div class='container container-header'>
+        <h1 class='logo'>Ilk</h1>
+        <div class='user-info'>
+          <p><a href='/signup'>sign up</a> | <a href='/login'>log in</a></p>
+        </div>
+      </div>
     </header>
     
     <div class='container container-main'>
-      {{{content}}} 
+      {{$content}}{{/content}} 
     </div>
   </div>
   
-  <footer class='container container-footer'></footer>
+  <footer>
+    <div class='container container-footer'></div>
+  </footer>
   {{>partials/google_analytics}}
 </body>
 </html>

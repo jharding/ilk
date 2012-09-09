@@ -1,0 +1,5 @@
+{{<supers/layout}}
+{{$content}}
+<p>Welcome home.</p>
+{{/content}}
+{{/supers/layout}}

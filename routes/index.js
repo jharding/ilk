@@ -1,3 +1,3 @@
-exports.index = function(req, res){
-  res.render('index', { layout: 'layout' });
+module.exports = {
+  pages: require('./pages.js')
 };

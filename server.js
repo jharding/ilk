@@ -6,12 +6,13 @@
 // ===================
 
 var express = require('express');
-var routes = require('./routes');
+var hogan = require('fs-hogan');
 var http = require('http');
 var path = require('path');
 
+var routes = require('./routes');
+
 var app = express();
-require('express-layout')(app);
 
 // configuration and middleware
 // ============================
@@ -20,6 +21,7 @@ app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'hjs');
+  app.engine('hjs', hogan.renderFile);
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -32,12 +34,13 @@ app.configure(function(){
 
 app.configure('development', function(){
   app.use(express.errorHandler());
+  hogan.set({ templates: app.get('views'), extension: app.get('view engine') });
 });
 
 // routes
 // ======
 
-app.get('/', routes.index);
+app.get('/', routes.pages.splash);
 
 // start your engines
 // ==================
