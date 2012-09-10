@@ -9,6 +9,7 @@ var express = require('express');
 var hogan = require('fs-hogan');
 var http = require('http');
 var path = require('path');
+var pg = require('pg');
 
 var routes = require('./routes');
 
@@ -35,12 +36,18 @@ app.configure(function(){
 app.configure('development', function(){
   app.use(express.errorHandler());
   hogan.set({ templates: app.get('views'), extension: app.get('view engine') });
+  pg.defaults.database = 'ilk';
 });
 
 // routes
 // ======
 
+// pages
 app.get('/', routes.pages.splash);
+
+// user
+app.get('/signup', routes.user.pages.signup);
+app.post('/signup', routes.user.actions.register);
 
 // start your engines
 // ==================

@@ -8,7 +8,8 @@
   "dependencies": {
     "express": "3.0.0rc3",
     "fs-hogan": "*",
-    "pg": "*"
+    "pg": "*",
+    "bcrypt": "*"
   },
   "devDependencies": {
     "grunt": "~0.3.0",
