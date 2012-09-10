@@ -1,7 +1,8 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     lint: {
-      files: ['src/js/**/*.js']
+      client: ['src/js/**/*.js'],
+      server: ['./*.js', './routes/**/*.js', './models/**/*.js']
     },
     less: {
       style: {
