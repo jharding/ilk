@@ -3,6 +3,6 @@
 
 module.exports = {
   splash: function(req, res, next) {
-    res.render('splash');
+    res.render('pages/splash');
   }
 };
