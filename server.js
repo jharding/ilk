@@ -10,6 +10,9 @@ var hogan = require('fs-hogan');
 var http = require('http');
 var path = require('path');
 var pg = require('pg');
+var middleware = {
+  csrfLocal: require('express-csrf-local')
+};
 
 var routes = require('./routes');
 
@@ -29,6 +32,7 @@ app.configure(function(){
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
   app.use(express.csrf());
+  app.use(middleware.csrfLocal('csrfToken'));
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'assets')));
 });

@@ -11,7 +11,7 @@ var users = require('../models/users.js');
 
 module.exports.pages = {
   signup: function(req, res, next) {
-    res.render('user/signup', { csrfToken: req.session._csrf });
+    res.render('user/signup');
   }
 };
 
