@@ -5,9 +5,10 @@ module.exports = function(grunt) {
       server: ['./*.js', './routes/**/*.js', './models/**/*.js']
     },
     less: {
-      style: {
-        src: 'src/less/style.less',
-        dest: 'assets/css/style.css'
+      development: {
+        files: {
+          'assets/css/style.css': 'src/less/style.less'
+        }
       }
     },
     watch: {
@@ -24,20 +25,18 @@ module.exports = function(grunt) {
         noempty: true,
         nonew: true,
         trailing: true,
-
         // relaxing options
         boss: true,
         es5: true,
         evil: true,
         expr: true,
-
         // environments
         node: true
       }
     }
   });
 
-  grunt.loadNpmTasks('grunt-less');
+  grunt.loadNpmTasks('grunt-contrib-less');
 
   grunt.registerTask('default', 'lint');
 };
