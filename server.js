@@ -1,25 +1,25 @@
 // ilk: message boards
-// -------------------
+// ===================
 // * Copyright (c) 2012 Jake Harding
 
 // module dependencies
-// ===================
+// -------------------
 
-var express = require('express');
-var hogan = require('fs-hogan');
-var http = require('http');
-var path = require('path');
-var pg = require('pg');
-var middleware = {
-  csrfLocal: require('express-csrf-local')
-};
+var express = require('express')
+  , hogan = require('fs-hogan')
+  , http = require('http')
+  , path = require('path')
+  , mysql = require('mysql')
+  , passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy
+  , middleware = {
+      csrfLocal: require('express-csrf-local')
+    };
 
-var routes = require('./routes');
-
-var app = express();
+var app = module.exports = express();
 
 // configuration and middleware
-// ============================
+// ----------------------------
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -31,6 +31,8 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use(express.csrf());
   app.use(middleware.csrfLocal('csrfToken'));
   app.use(app.router);
@@ -39,12 +41,25 @@ app.configure(function(){
 
 app.configure('development', function(){
   app.use(express.errorHandler());
-  hogan.set({ templates: app.get('views'), extension: app.get('view engine') });
-  pg.defaults.database = 'ilk';
+
+  hogan.set({
+    templates: app.get('views')
+  , extension: app.get('view engine')
+  });
+
+  app.set('mysql', mysql.createConnection({
+      host: 'localhost'
+    , user: 'root'
+    , database: 'ilk_dev'
+    , debug: true
+    })
+  );
 });
 
 // routes
-// ======
+// ------
+
+var routes = require('./routes');
 
 // pages
 app.get('/', routes.pages.splash);
@@ -54,7 +69,7 @@ app.get('/signup', routes.user.pages.signup);
 app.post('/signup', routes.user.actions.register);
 
 // start your engines
-// ==================
+// ------------------
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

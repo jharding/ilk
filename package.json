@@ -6,15 +6,19 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "3.0.0rc3",
+    "express": "~3.0",
     "express-csrf-local": "~0",
     "fs-hogan": "~0",
+    "mysql": "*",
     "pg": "*",
-    "bcrypt": "*"
+    "passport": "*",
+    "passport-local": "*",
+    "bcrypt": "*",
+    "underscore": "*"
   },
   "devDependencies": {
     "grunt": "~0.3.0",
     "grunt-exec": "*",
-    "grunt-contrib-less": "git://github.com/jharding/grunt-contrib-less.git"
+    "grunt-contrib-less": "*"
   }
 }

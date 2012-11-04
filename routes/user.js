@@ -1,26 +1,25 @@
-// user controller
-// ---------------
-
 // dependencies
-// ============
+// ------------
 
-var users = require('../models/users.js');
+var User = require('../models/user.js');
 
 // pages
-// =====
+// -----
 
 module.exports.pages = {
-  signup: function(req, res, next) {
-    res.render('user/signup');
-  }
+  signup: function(req, res, next) { res.render('user/signup'); }
 };
 
 module.exports.actions = {
   register: function(req, res, next) {
-    users.register(req.body.email, req.body.password, function(err) {
-      if (err) { next(err); return; }
-
+    new User({
+      email: req.body.email
+    , password: req.body.password
+    })
+    .save()
+    .val(function(attrs) {
       res.redirect('/');
-    });
+    })
+    .error(function(err) { next(err); });
   }
 };

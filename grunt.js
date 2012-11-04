@@ -38,12 +38,12 @@ module.exports = function(grunt) {
     }
   , exec: {
       dbcreate: {
-        command: 'psql -h localhost -d ilk -f ' +
+        command: 'mysql --user=ilk_dev ilk_dev < ' +
           path.join(__dirname, '/db/create_tables.sql')
       , stdout: true
       }
     , dbdrop: {
-        command: 'psql -h localhost -d ilk -f ' +
+        command: 'mysql --user=ilk_dev ilk_dev < ' +
           path.join(__dirname, '/db/drop_tables.sql')
       , stdout: true
       }
