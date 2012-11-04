@@ -4,7 +4,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     lint: {
       client: ['src/js/**/*.js']
-    , server: ['./*.js', './routes/**/*.js', './models/**/*.js']
+    , server: ['*.js', 'lib/**/*.js', 'routes/**/*.js', 'models/**/*.js']
     }
   , less: {
       development: {
@@ -32,6 +32,7 @@ module.exports = function(grunt) {
       , es5: true
       , evil: true
       , expr: true
+      , laxcomma: true
         // environments
       , node: true
       }
