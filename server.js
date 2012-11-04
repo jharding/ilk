@@ -10,11 +10,11 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , mysql = require('mysql')
-  , passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy
-  , middleware = {
-      csrfLocal: require('express-csrf-local')
-    };
+  , mw = {
+      passport: require('passport')
+    , csrfLocal: require('express-csrf-local')
+    }
+  , routes;
 
 var app = module.exports = express();
 
@@ -31,10 +31,10 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
-  app.use(passport.initialize());
-  app.use(passport.session());
+  app.use(mw.passport.initialize());
+  app.use(mw.passport.session());
   app.use(express.csrf());
-  app.use(middleware.csrfLocal('csrfToken'));
+  app.use(mw.csrfLocal('csrfToken'));
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'assets')));
 });
@@ -56,20 +56,10 @@ app.configure('development', function(){
   );
 });
 
-// routes
-// ------
-
-var routes = require('./routes');
-
-// pages
-app.get('/', routes.pages.splash);
-
-// user
-app.get('/signup', routes.user.pages.signup);
-app.post('/signup', routes.user.actions.register);
-
 // start your engines
 // ------------------
+
+routes = require('./routes/routes');
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
