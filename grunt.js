@@ -55,6 +55,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('dbcreate', 'exec:dbcreate');
   grunt.registerTask('dbdrop', 'exec:dbdrop');
+  grunt.registerTask('dbreset', 'exec:dbdrop exec:dbcreate');
 
   grunt.registerTask('default', 'lint');
 };
