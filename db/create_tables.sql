@@ -1,6 +1,6 @@
 CREATE TABLE users(
   id SERIAL UNIQUE,
   email VARCHAR(256) UNIQUE NOT NULL,
-  password_hash CHAR(60) NOT NULL,
+  password CHAR(60) NOT NULL,
   PRIMARY KEY(id)
 );
