@@ -9,7 +9,7 @@ module.exports = function(grunt) {
   , less: {
       development: {
         files: {
-          'assets/css/style.css': 'src/less/style.less'
+          'public/css/style.css': 'src/less/style.less'
         }
       }
     }
