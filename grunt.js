@@ -3,18 +3,18 @@ var path = require('path');
 module.exports = function(grunt) {
   grunt.initConfig({
     lint: {
-      client: ['src/js/**/*.js']
+      client: ['assets/js/**/*.js']
     , server: ['*.js', 'lib/**/*.js', 'routes/**/*.js', 'models/**/*.js']
     }
   , less: {
       development: {
         files: {
-          'public/css/style.css': 'src/less/style.less'
+          'public/css/style.css': 'assets/less/style.less'
         }
       }
     }
   , watch: {
-      files: 'src/less/**/*.less'
+      files: 'assets/less/**/*.less'
     , tasks: 'less:style'
     }
   , jshint: {
