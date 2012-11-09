@@ -23,7 +23,7 @@ var app = module.exports = express();
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
-  app.set('views', __dirname + '/views');
+  app.set('views', __dirname + '/templates');
   app.set('view engine', 'hjs');
   app.engine('hjs', hogan.renderFile);
   app.use(express.logger('dev'));
@@ -59,7 +59,7 @@ app.configure('development', function(){
 // start your engines
 // ------------------
 
-routes = require('./routes/routes');
+routes = require('./routes/definitions');
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
