@@ -13,8 +13,7 @@ var express = require('express')
   , mw = {
       passport: require('passport')
     , csrfLocal: require('express-csrf-local')
-    }
-  , routes;
+    };
 
 var app = module.exports = express();
 
@@ -51,7 +50,6 @@ app.configure('development', function(){
       host: 'localhost'
     , user: 'root'
     , database: 'ilk_dev'
-    , debug: true
     })
   );
 });
@@ -59,7 +57,7 @@ app.configure('development', function(){
 // start your engines
 // ------------------
 
-routes = require('./routes/definitions');
+require('./routes').start(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
