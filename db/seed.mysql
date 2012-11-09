@@ -1,0 +1,7 @@
+-- password is password
+INSERT INTO users(email, password) VALUES('test@test.com', 
+  '$2a$10$rtQnGl3P0tCw7VRlFl4Nve3dX6VpTtLWi6s8Tax.9YGbx44FlcAki');
+
+INSERT INTO boards(name, description) VALUES('board', 'discuss here.');
+
+INSERT INTO board_membership(member_id, board_id) VALUES(1, 1);

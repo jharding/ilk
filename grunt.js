@@ -40,12 +40,17 @@ module.exports = function(grunt) {
   , exec: {
       dbcreate: {
         command: 'mysql --user=ilk_dev ilk_dev < ' +
-          path.join(__dirname, '/db/create_tables.sql')
+          path.join(__dirname, '/db/create_tables.mysql')
+      , stdout: true
+      }
+    , dbseed: {
+        command: 'mysql --user=ilk_dev ilk_dev < ' +
+          path.join(__dirname, '/db/seed.mysql')
       , stdout: true
       }
     , dbdrop: {
         command: 'mysql --user=ilk_dev ilk_dev < ' +
-          path.join(__dirname, '/db/drop_tables.sql')
+          path.join(__dirname, '/db/drop_tables.mysql')
       , stdout: true
       }
     }
@@ -54,9 +59,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-contrib-less');
 
-  grunt.registerTask('dbcreate', 'exec:dbcreate');
+  grunt.registerTask('dbcreate', 'exec:dbcreate exec:dbseed');
   grunt.registerTask('dbdrop', 'exec:dbdrop');
-  grunt.registerTask('dbreset', 'exec:dbdrop exec:dbcreate');
+  grunt.registerTask('dbreset', 'dbdrop dbcreate');
 
   grunt.registerTask('default', 'lint');
 };

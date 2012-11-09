@@ -1,0 +1,21 @@
+CREATE TABLE users(
+  id SERIAL,
+  email VARCHAR(256) UNIQUE NOT NULL,
+  password CHAR(60) NOT NULL,
+  PRIMARY KEY(id)
+) ENGINE=InnoDB;
+
+CREATE TABLE boards(
+  id SERIAL,
+  name VARCHAR(128) NOT NULL,
+  description TEXT NOT NULL,
+  PRIMARY KEY(id)
+) ENGINE=InnoDB;
+
+CREATE TABLE board_membership(
+  member_id BIGINT UNSIGNED NOT NULL,
+  board_id BIGINT UNSIGNED NOT NULL,
+  PRIMARY KEY(member_id, board_id),
+  FOREIGN KEY(member_id) REFERENCES users(id),
+  FOREIGN KEY(board_id) REFERENCES boards(id)
+) ENGINE=InnoDB;
