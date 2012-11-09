@@ -12,7 +12,7 @@ var controllers = require('./controllers')
 // route defintions
 // ----------------
 
-module.exports.start = function(app) {
+module.exports.attachTo = function(app) {
   // pages
   app.get('/', pages.splash);
   app.get('/secret', auth.verifySession, pages.splash); // temp

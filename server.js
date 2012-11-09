@@ -57,7 +57,7 @@ app.configure('development', function(){
 // start your engines
 // ------------------
 
-require('./routes').start(app);
+require('./routes').attachTo(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
