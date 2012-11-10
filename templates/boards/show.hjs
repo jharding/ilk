@@ -1,0 +1,5 @@
+{{<supers/layout}}
+  {{$content}}
+    <h2>Board</h2>
+  {{/content}}
+{{/supers/layout}}

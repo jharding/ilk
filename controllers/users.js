@@ -8,11 +8,11 @@ module.exports = {
   // -----
 
   signup: function(req, res, next) {
-    res.render('user/signup');
+    res.render('users/signup');
   }
 
 , login: function(req, res, next) {
-    res.render('user/login');
+    res.render('users/login');
   }
 
   // actions
