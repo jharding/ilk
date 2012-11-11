@@ -21,7 +21,8 @@ module.exports.attachTo = function(app) {
   app.get('/signup', users.signup);
   app.post('/signup', users.register);
   app.get('/login', users.login);
-  app.post('/login', auth.verifyCredentials);
+  app.post('/login', auth.login);
+  app.get('/logout', auth.logout);
 
   // board
   app.get('/i/:name', boards.show);
