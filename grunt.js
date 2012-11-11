@@ -6,6 +6,17 @@ module.exports = function(grunt) {
       client: ['assets/js/**/*.js']
     , server: ['*.js', 'lib/**/*.js', 'routes/**/*.js', 'models/**/*.js']
     }
+
+  , concat: {
+      vendor: {
+        src: [
+          'assets/vendor/jquery/jquery-1.8.2.js'
+        , 'assets/vendor/bootstrap/js/bootstrap-dropdown.js'
+        ]
+      , dest: 'public/js/vendor.js'
+      }
+    }
+
   , less: {
       development: {
         files: {
@@ -13,10 +24,12 @@ module.exports = function(grunt) {
         }
       }
     }
+
   , watch: {
       files: 'assets/less/**/*.less'
     , tasks: 'less:development'
     }
+
   , jshint: {
       options: {
         // enforcing options
@@ -37,6 +50,7 @@ module.exports = function(grunt) {
       , node: true
       }
     }
+
   , exec: {
       dbcreate: {
         command: 'mysql --user=ilk_dev ilk_dev < ' +
