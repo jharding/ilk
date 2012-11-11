@@ -9,13 +9,13 @@ module.exports = function(grunt) {
   , less: {
       development: {
         files: {
-          'public/css/style.css': 'assets/less/style.less'
+          'public/css/ilk.css': 'assets/less/ilk.less'
         }
       }
     }
   , watch: {
       files: 'assets/less/**/*.less'
-    , tasks: 'less:style'
+    , tasks: 'less:development'
     }
   , jshint: {
       options: {

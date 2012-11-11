@@ -7,19 +7,28 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/ilk.css">
 </head>
-<body>
+<body id="template-{{template}}">
   <div class="sticky-footer-wrapper">
-    <header>
-      <div class="container container-header">
-        <h1 class="logo">Ilk</h1>
-        <div class="user-info">
-          <p><a href="/signup">sign up</a> | <a href="/login">log in</a></p>
+    <header class="navbar navbar-static-top navbar-header">
+        <div class="navbar-inner">
+      <div class="container">
+          <a class="brand" href="/">Ilk</a>
+          <ul class="nav nav-user-info">
+            {{#sessionUser}}
+              <li><a href="#">{{email}}</a></li>
+            {{/sessionUser}}
+            {{^sessionUser}}
+              <li>
+                <a href="/signup">sign up</a> | <a href="/login">log in</a>
+              </li>
+            {{/sessionUser}}
+          </ul>
         </div>
       </div>
-    </header>
-    
+    </header> 
+
     <div class="container container-main">
       {{$content}}{{/content}} 
     </div>
@@ -28,6 +37,6 @@
   <footer>
     <div class="container container-footer"></div>
   </footer>
-  {{>partials/google_analytics}}
+  {{>layouts/_google_analytics}}
 </body>
 </html>
