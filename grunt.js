@@ -4,7 +4,13 @@ module.exports = function(grunt) {
   grunt.initConfig({
     lint: {
       client: ['assets/js/**/*.js']
-    , server: ['*.js', 'lib/**/*.js', 'routes/**/*.js', 'models/**/*.js']
+    , server: [
+        '*.js'
+      , 'lib/**/*.js'
+      , 'views/**/*.js'
+      , 'models/**/*.js'
+      , 'controllers/**/*.js'
+      ]
     }
 
   , concat: {

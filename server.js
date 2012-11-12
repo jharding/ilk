@@ -15,8 +15,6 @@ var express = require('express')
     , csrfLocal: require('express-csrf-local')
     };
 
-require('./lib/render_context');
-
 var app = module.exports = express();
 
 // configuration and middleware
