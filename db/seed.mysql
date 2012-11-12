@@ -1,11 +1,33 @@
--- password is password
+-- users (password is always password)
+-- -----------------------------------
+
 INSERT INTO users(email, password) VALUES('test@test.com',
 '$2a$10$rtQnGl3P0tCw7VRlFl4Nve3dX6VpTtLWi6s8Tax.9YGbx44FlcAki');
 
+INSERT INTO users(email, password) VALUES('jake@test.com',
+'$2a$10$rtQnGl3P0tCw7VRlFl4Nve3dX6VpTtLWi6s8Tax.9YGbx44FlcAki');
+
+-- boards
+-- ------
+
 INSERT INTO boards(name, description) VALUES('board', 'discuss here.');
 
-INSERT INTO board_members(username, member_id, board_id)
-VALUES('jake', 1, 1);
+-- board members
+-- -------------
 
-INSERT INTO posts(id, name, link, author_id, board_id)
-VALUES(1, 'Cool Cat', 'http://thejakeharding.com', 1, 1);
+INSERT INTO board_members(username, member_id, board_id)
+VALUES('test', 1, 1);
+
+INSERT INTO board_members(username, member_id, board_id)
+VALUES('jake', 2, 1);
+
+-- posts
+-- -----
+INSERT INTO posts(name, link, author_id, board_id)
+VALUES('Cool Cat', 'http://thejakeharding.com', 2, 1);
+
+INSERT INTO posts(name, link, author_id, board_id)
+VALUES('Philanthropist', 'http://thejakeharding.com/philanthropist', 1, 1);
+
+INSERT INTO posts(name, link, author_id, board_id)
+VALUES('Looking Glass', 'http://thejakeharding.com/looking-glass', 2, 1);
