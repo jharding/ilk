@@ -12,10 +12,23 @@ CREATE TABLE boards(
   PRIMARY KEY(id)
 ) ENGINE=InnoDB;
 
-CREATE TABLE board_membership(
+CREATE TABLE board_members(
+  id SERIAL,
+  username VARCHAR(20) NOT NULL,
   member_id BIGINT UNSIGNED NOT NULL,
   board_id BIGINT UNSIGNED NOT NULL,
-  PRIMARY KEY(member_id, board_id),
+  PRIMARY KEY(id),
   FOREIGN KEY(member_id) REFERENCES users(id),
+  FOREIGN KEY(board_id) REFERENCES boards(id)
+) ENGINE=InnoDB;
+
+CREATE TABLE posts(
+  id SERIAL,
+  name VARCHAR(128) NOT NULL,
+  link VARCHAR(2083) NOT NULL,
+  author_id BIGINT UNSIGNED NOT NULL,
+  board_id BIGINT UNSIGNED NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(author_id) REFERENCES board_members(id),
   FOREIGN KEY(board_id) REFERENCES boards(id)
 ) ENGINE=InnoDB;

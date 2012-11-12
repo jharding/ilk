@@ -1,7 +1,11 @@
 -- password is password
-INSERT INTO users(email, password) VALUES('test@test.com', 
-  '$2a$10$rtQnGl3P0tCw7VRlFl4Nve3dX6VpTtLWi6s8Tax.9YGbx44FlcAki');
+INSERT INTO users(email, password) VALUES('test@test.com',
+'$2a$10$rtQnGl3P0tCw7VRlFl4Nve3dX6VpTtLWi6s8Tax.9YGbx44FlcAki');
 
 INSERT INTO boards(name, description) VALUES('board', 'discuss here.');
 
-INSERT INTO board_membership(member_id, board_id) VALUES(1, 1);
+INSERT INTO board_members(username, member_id, board_id)
+VALUES('jake', 1, 1);
+
+INSERT INTO posts(id, name, link, author_id, board_id)
+VALUES(1, 'Cool Cat', 'http://thejakeharding.com', 1, 1);
