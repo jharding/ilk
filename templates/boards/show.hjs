@@ -1,5 +1,15 @@
 {{<supers/layout}}
-  {{$content}}
-    <h2>Board</h2>
-  {{/content}}
+{{$content}}
+<h2>{{name}} <small>{{description}}</small></h2>
+
+<ul>
+  {{#posts}}
+  <li>
+    <a href="{{link}}">{{name}}</a>
+    <p>by: {{username}}</p>
+    </li>
+  {{/posts}}
+</ul>
+
+{{/content}}
 {{/supers/layout}}
