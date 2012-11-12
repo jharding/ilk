@@ -7,7 +7,9 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="/css/ilk.css">
+  {{#css}}
+  <link rel="stylesheet" href="/css/{{.}}.css">
+  {{/css}}
 </head>
 <body id="template-{{template}}">
   <div class="sticky-footer-wrapper">
@@ -15,28 +17,40 @@
         <div class="navbar-inner">
       <div class="container">
           <a class="brand" href="/">Ilk</a>
-          <ul class="nav nav-user-info">
-            {{#sessionUser}}
-              <li><a href="#">{{email}}</a></li>
-            {{/sessionUser}}
-            {{^sessionUser}}
+          <ul class="nav nav-user">
+            {{#current_user}}
+            <li class="dropdown">
+              <a class="dropdown-toggle link-user" href="#"
+              data-toggle="dropdown">{{email}}<b class="caret"></b></a>
+
+              <ul class="dropdown-menu">
+                <li class="divider"></li>
+                <li><a href="/logout">Log Out</a></li>
+              </ul>
+            </li>
+            {{/current_user}}
+            {{^current_user}}
               <li>
-                <a href="/signup">sign up</a> | <a href="/login">log in</a>
+                <a class="link-user" href="/signup">sign up</a>
+                <a class="link-user" href="/login">log in</a>
               </li>
-            {{/sessionUser}}
+            {{/current_user}}
           </ul>
         </div>
       </div>
-    </header> 
+    </header>
 
     <div class="container container-main">
-      {{$content}}{{/content}} 
+      {{$content}}{{/content}}
     </div>
   </div>
-  
+
   <footer>
     <div class="container container-footer"></div>
   </footer>
+  {{#js}}
+  <script type="text/javascript" src="/js/{{.}}.js"></script>
+  {{/js}}
   {{>layouts/_google_analytics}}
 </body>
 </html>
