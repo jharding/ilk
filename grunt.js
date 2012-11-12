@@ -26,8 +26,8 @@ module.exports = function(grunt) {
     }
 
   , watch: {
-      files: 'assets/less/**/*.less'
-    , tasks: 'less:development'
+      files: 'assets/**/*'
+    , tasks: 'dev'
     }
 
   , jshint: {
@@ -76,6 +76,8 @@ module.exports = function(grunt) {
   grunt.registerTask('dbcreate', 'exec:dbcreate exec:dbseed');
   grunt.registerTask('dbdrop', 'exec:dbdrop');
   grunt.registerTask('dbreset', 'dbdrop dbcreate');
+
+  grunt.registerTask('dev', 'less:development concat');
 
   grunt.registerTask('default', 'lint');
 };
