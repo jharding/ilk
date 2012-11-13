@@ -32,7 +32,7 @@ module.exports = function(grunt) {
     }
 
   , watch: {
-      files: 'assets/**/*'
+      files: 'assets/**/*.*'
     , tasks: 'dev'
     }
 
