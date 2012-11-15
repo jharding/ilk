@@ -25,23 +25,13 @@ Board = module.exports = fabio.define({
   // -------
 
 , statics: {
-    findById: function(id, cb) {
-      var query = "SELECT * FROM boards WHERE id=?";
+    findOne: function(condition, cb) {
+      var query = 'SELECT * FROM boards WHERE ?';
 
-      db.query(query, [id], function(err, results) {
+      db.query(query, condition, function(err, results) {
         if (err) { return cb(err); }
 
-        cb(null,  results[0] ? Board.new(results[0], { raw: true }) : null);
-      });
-    }
-
-  , findByName: function(name, cb) {
-      var query = "SELECT * FROM boards WHERE name=?";
-
-      db.query(query, [name], function(err, results) {
-        if (err) { return cb(err); }
-
-        cb(null,  results[0] ? Board.new(results[0], { raw: true }) : null);
+        cb(null,  results[0] ? Board.load(results[0]) : null);
       });
     }
   }
@@ -51,7 +41,15 @@ Board = module.exports = fabio.define({
 
 , methods: {
     create: function(attrs, cb) {
-      // TODO
+      var that = this
+        , query = 'INSERT INTO boards SET ?';
+
+      db.query(query, attrs, function(err, results) {
+        if (err) { return cb(err); }
+
+        that.id = results.insertId;
+        cb(null);
+      });
     }
 
   , update: function(attrs, cb) {

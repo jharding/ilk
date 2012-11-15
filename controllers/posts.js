@@ -24,7 +24,7 @@ module.exports = {
       , url = req.body.url
       , user = req.user;
 
-    Board.findByName(boardName, function(err, board) {
+    Board.findOne({ name: boardName }, function(err, board) {
       Post.create({
         title: title
       , url: url

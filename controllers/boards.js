@@ -11,7 +11,7 @@ module.exports = {
   show: function(req, res, next) {
     var name = req.params.name;
 
-    Board.findByName(name, function(err, board) {
+    Board.findOne({ name: name }, function(err, board) {
       if (err) { return next(err); }
 
       board

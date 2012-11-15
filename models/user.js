@@ -32,14 +32,13 @@ User = module.exports = fabio.define({
   // -------
 
 , statics: {
-    findOne: function(attrs, cb) {
-      var query = composeSelect('users', attrs)
-        , user;
+    findOne: function(condition, cb) {
+      var query = 'SELECT * FROM users WHERE ?';
 
-      db.query(query, function(err, results) {
+      db.query(query, condition, function(err, results) {
         if (err) { return cb(err); }
 
-        cb(null,  results[0] ? User.new(results[0], { raw: true }) : null);
+        cb(null,  results[0] ? User.load(results[0]) : null);
       });
     }
   }
@@ -49,12 +48,13 @@ User = module.exports = fabio.define({
 
 , methods: {
     create: function(attrs, cb) {
-      var query = 'INSERT INTO users SET ?';
+      var that = this
+        , query = 'INSERT INTO users SET ?';
 
       db.query(query, attrs, function(err, results) {
         if (err) { return cb(err); }
 
-        // TODO: pass something
+        that.id = results.insertId;
         cb(null);
       });
     }
@@ -79,28 +79,6 @@ User = module.exports = fabio.define({
 
 // helper functions
 // ----------------
-
-function composeSelect(tables, conditions) {
-  var statement
-    , keys;
-
-  tables = _.isArray(tables) ? tables.join(', ') : tables;
-  statement = 'SELECT * FROM ' + tables;
-
-  keys = Object.keys(conditions || {});
-
-  if (keys.length > 0) {
-    statement += ' WHERE ';
-    keys.forEach(function(key) {
-      statement += key + '=' + mysql.escape(conditions[key]) + ' AND ';
-    });
-
-    // strip trailing AND
-    statement = statement.replace(/ AND $/, ' ');
-  }
-
-  return statement;
-}
 
 function hash(val, cb) {
   bcrypt.hash(val, bcryptRounds, function(err, hashedVal) {

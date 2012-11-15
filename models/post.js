@@ -30,6 +30,15 @@ Post = module.exports = fabio.define({
   // -------
 
 , statics: {
+    findOne: function(condition, cb) {
+      var query = 'SELECT * FROM posts WHERE ?';
+
+      db.query(query, condition, function(err, results) {
+        if (err) { return cb(err); }
+
+        cb(null,  results[0] ? Board.load(results[0]) : null);
+      });
+    }
   }
 
   // methods
@@ -37,12 +46,14 @@ Post = module.exports = fabio.define({
 
 , methods: {
     create: function(attrs, cb) {
-      var query = 'INSERT INTO posts SET ?';
+      var that = this
+        , query = 'INSERT INTO posts SET ?';
 
       db.query(query, attrs, function(err, results) {
         if (err) { return cb(err); }
 
-        cb(null,  results[0]);
+        that.id = results.insertId;
+        cb(null);
       });
     }
 
