@@ -15,19 +15,19 @@ INSERT INTO boards(name, description) VALUES('board', 'discuss here.');
 -- board members
 -- -------------
 
-INSERT INTO board_members(username, member_id, board_id)
+INSERT INTO boardMembers(username, memberId, boardId)
 VALUES('test', 1, 1);
 
-INSERT INTO board_members(username, member_id, board_id)
+INSERT INTO boardMembers(username, memberId, boardId)
 VALUES('jake', 2, 1);
 
 -- posts
 -- -----
-INSERT INTO posts(name, link, author_id, board_id)
+INSERT INTO posts(title, url, authorId, boardId)
 VALUES('Cool Cat', 'http://thejakeharding.com', 2, 1);
 
-INSERT INTO posts(name, link, author_id, board_id)
+INSERT INTO posts(title, url, authorId, boardId)
 VALUES('Philanthropist', 'http://thejakeharding.com/philanthropist', 1, 1);
 
-INSERT INTO posts(name, link, author_id, board_id)
+INSERT INTO posts(title, url, authorId, boardId)
 VALUES('Looking Glass', 'http://thejakeharding.com/looking-glass', 2, 1);
