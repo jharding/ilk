@@ -16,7 +16,8 @@ var controllers = require('./controllers')
 
 module.exports.attachTo = function(app) {
   // pages
-  app.get('/', pages.splash);
+  //app.get('/', pages.splash);
+  app.get('/', function(req, res) { res.redirect('/i/board'); }); // temp
 
   // users
   app.get('/signup', users.signup);
