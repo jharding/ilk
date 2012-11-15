@@ -68,9 +68,9 @@ Board = module.exports = fabio.define({
 
       if (opts.authors) {
         query = [
-          'SELECT posts.id, posts.name, posts.link, posts.author_id,'
-        , 'board_members.username FROM posts INNER JOIN board_members'
-        , 'ON posts.author_id=board_members.id WHERE posts.board_id=?'
+          'SELECT posts.id, posts.title, posts.url, posts.authorId,'
+        , 'boardMembers.username FROM posts INNER JOIN boardMembers'
+        , 'ON posts.authorId=boardMembers.id WHERE posts.boardId=?'
         ].join(' ');
       }
 
