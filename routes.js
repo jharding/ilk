@@ -20,8 +20,8 @@ module.exports.attachTo = function(app) {
   app.get('/', function(req, res) { res.redirect('/i/board'); }); // temp
 
   // users
-  app.get('/signup', users.signup);
-  app.post('/signup', users.register);
+  app.get('/signup', users.new);
+  app.post('/signup', users.create);
   app.get('/login', users.login);
   app.post('/login', auth.login);
   app.get('/logout', auth.logout);

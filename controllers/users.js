@@ -8,8 +8,8 @@ module.exports = {
   // pages
   // -----
 
-  signup: function(req, res, next) {
-    res.view(views.signup);
+  new: function(req, res, next) {
+    res.view(views.new);
   }
 
 , login: function(req, res, next) {
@@ -19,7 +19,7 @@ module.exports = {
   // actions
   // -------
 
-, register: function(req, res, next) {
+, create: function(req, res, next) {
     User.create({
       email: req.body.email
     , password: req.body.password
