@@ -50,6 +50,7 @@ app.configure('development', function(){
       host: 'localhost'
     , user: 'root'
     , database: 'ilk_dev'
+    , debug: true
     })
   );
 });
