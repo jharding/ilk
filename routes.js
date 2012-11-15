@@ -6,6 +6,7 @@ var controllers = require('./controllers')
   , pages = controllers.pages
   , users = controllers.users
   , boards = controllers.boards
+  , posts = controllers.posts
 
   // helpers
   , auth = require('./lib/auth');
@@ -24,6 +25,10 @@ module.exports.attachTo = function(app) {
   app.post('/login', auth.login);
   app.get('/logout', auth.logout);
 
-  // board
+  // boards
   app.get('/i/:name', boards.show);
+
+  // posts
+  app.get('/i/:name/submit', posts.new);
+  app.post('/i/:name/submit', posts.create);
 };

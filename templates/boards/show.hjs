@@ -2,10 +2,12 @@
 {{$content}}
 <h2>{{name}} <small>{{description}}</small></h2>
 
+<a href="{{url.path}}/submit">Submit</a>
+
 <ul>
   {{#posts}}
   <li>
-    <a href="{{link}}">{{name}}</a>
+    <a href="{{url}}">{{title}}</a>
     <p>by: {{username}}</p>
     </li>
   {{/posts}}
