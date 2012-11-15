@@ -25,13 +25,12 @@ module.exports = {
       , user = req.user;
 
     Board.findByName(boardName, function(err, board) {
-      new Post({
+      Post.create({
         title: title
       , url: url
       , boardId: board.attrs.id
       , authorId: user.attrs.id
       })
-      .save()
       .value(function(attrs) { res.redirect('/'); })
       .error(function(err) { next(err); });
     });

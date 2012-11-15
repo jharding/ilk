@@ -20,11 +20,10 @@ module.exports = {
   // -------
 
 , register: function(req, res, next) {
-    new User({
+    User.create({
       email: req.body.email
     , password: req.body.password
     })
-    .save()
     .value(function(attrs) {
       res.redirect('/');
     })

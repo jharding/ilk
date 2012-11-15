@@ -31,7 +31,7 @@ Board = module.exports = fabio.define({
       db.query(query, [id], function(err, results) {
         if (err) { return cb(err); }
 
-        cb(null,  results[0] ? new Board(results[0], { raw: true }) : null);
+        cb(null,  results[0] ? Board.new(results[0], { raw: true }) : null);
       });
     }
 
@@ -41,7 +41,7 @@ Board = module.exports = fabio.define({
       db.query(query, [name], function(err, results) {
         if (err) { return cb(err); }
 
-        cb(null,  results[0] ? new Board(results[0], { raw: true }) : null);
+        cb(null,  results[0] ? Board.new(results[0], { raw: true }) : null);
       });
     }
   }

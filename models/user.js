@@ -39,7 +39,7 @@ User = module.exports = fabio.define({
       db.query(query, function(err, results) {
         if (err) { return cb(err); }
 
-        cb(null,  results[0] ? new User(results[0], { raw: true }) : null);
+        cb(null,  results[0] ? User.new(results[0], { raw: true }) : null);
       });
     }
   }
