@@ -68,7 +68,7 @@ User = module.exports = fabio.define({
     }
 
   , verifyPassword: function(val, cb) {
-      bcrypt.compare(val, this.getAttrs().password, function(err, same) {
+      bcrypt.compare(val, this.attrs.password, function(err, same) {
         if (err) { return cb(err); }
 
         cb(null, same);
