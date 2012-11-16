@@ -5,7 +5,16 @@ module.exports = base.extend({
 
 , js: ['vendor', 'core']
 
-, current_user: function(req, context, cb) {
+, flash: function(req, locals) {
+    return {
+      success: req.flash('success')
+    , info: req.flash('info')
+    , warning: req.flash('warning')
+    , error: req.flash('error')
+    };
+  }
+
+, current_user: function(req, locals, cb) {
     if (req.user) {
       req.user.value(function(attrs) { cb(null, attrs); });
     }

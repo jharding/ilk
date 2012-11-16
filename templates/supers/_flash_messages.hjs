@@ -1,0 +1,27 @@
+{{#flash.success}}
+<div class="alert alert-success">
+  <button class="close" type="button" data-dismiss="alert">×</button>
+  {{.}}
+</div>
+{{/flash.success}}
+
+{{#flash.info}}
+<div class="alert alert-info">
+  <button class="close" type="button" data-dismiss="alert">×</button>
+  {{.}}
+</div>
+{{/flash.info}}
+
+{{#flash.warning}}
+<div class="alert alert-warning">
+  <button class="close" type="button" data-dismiss="alert">×</button>
+  {{.}}
+</div>
+{{/flash.warning}}
+
+{{#flash.error}}
+<div class="alert alert-error">
+  <button class="close" type="button" data-dismiss="alert">×</button>
+  {{.}}
+</div>
+{{/flash.error}}

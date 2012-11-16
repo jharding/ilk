@@ -13,6 +13,7 @@ var express = require('express')
   , mw = {
       passport: require('passport')
     , csrfLocal: require('express-csrf-local')
+    , flash: require('connect-flash')
     };
 
 var app = module.exports = express();
@@ -30,6 +31,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
+  app.use(mw.flash());
   app.use(mw.passport.initialize());
   app.use(mw.passport.session());
   app.use(express.csrf());
@@ -53,6 +55,15 @@ app.configure('development', function() {
     , debug: true
     })
   );
+});
+
+app.configure('test', function() {
+  app.use(express.errorHandler());
+
+  hogan.set({
+    templates: app.get('views')
+  , extension: app.get('view engine')
+  });
 });
 
 // start your engines
