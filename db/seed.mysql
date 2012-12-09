@@ -23,6 +23,7 @@ VALUES('jake', 2, 1);
 
 -- posts
 -- -----
+
 INSERT INTO posts(title, url, authorId, boardId)
 VALUES('Cool Cat', 'http://thejakeharding.com', 2, 1);
 
@@ -31,3 +32,12 @@ VALUES('Philanthropist', 'http://thejakeharding.com/philanthropist', 1, 1);
 
 INSERT INTO posts(title, url, authorId, boardId)
 VALUES('Looking Glass', 'http://thejakeharding.com/looking-glass', 2, 1);
+
+-- comments
+-- --------
+
+INSERT INTO comments(content, authorId, postId)
+VALUES('Eh, not impressed.', 2, 1);
+
+INSERT INTO comments(content, authorId, postId)
+VALUES('What? Are you kidding me?.', 1, 1);
