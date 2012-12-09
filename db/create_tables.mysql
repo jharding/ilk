@@ -12,7 +12,7 @@ CREATE TABLE boards(
   PRIMARY KEY(id)
 ) ENGINE=InnoDB;
 
-CREATE TABLE boardMembers(
+CREATE TABLE memberships(
   id SERIAL,
   username VARCHAR(20) NOT NULL,
   memberId BIGINT UNSIGNED NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE posts(
   authorId BIGINT UNSIGNED NOT NULL,
   boardId BIGINT UNSIGNED NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(authorId) REFERENCES boardMembers(id),
+  FOREIGN KEY(authorId) REFERENCES memberships(id),
   FOREIGN KEY(boardId) REFERENCES boards(id)
 ) ENGINE=InnoDB;
 
@@ -46,6 +46,6 @@ CREATE TABLE comments(
   authorId BIGINT UNSIGNED NOT NULL,
   postId BIGINT UNSIGNED NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(authorId) REFERENCES boardMembers(id),
+  FOREIGN KEY(authorId) REFERENCES memberships(id),
   FOREIGN KEY(postId) REFERENCES posts(id)
 ) ENGINE=InnoDB;

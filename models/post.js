@@ -71,8 +71,8 @@ Post = module.exports = fabio.define({
       var id = this.id
         , query = [
             'SELECT comments.id, comments.content, comments.authorId,'
-          , 'boardMembers.username FROM comments INNER JOIN boardMembers'
-          , 'ON comments.authorId=boardMembers.id WHERE comments.postId=?'
+          , 'memberships.username FROM comments INNER JOIN memberships'
+          , 'ON comments.authorId=memberships.id WHERE comments.postId=?'
           ].join(' ');
 
       db.query(query, [id], function(err, rows) {

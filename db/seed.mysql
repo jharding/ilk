@@ -18,10 +18,10 @@ INSERT INTO boards(name, description) VALUES('board', 'discuss here.');
 -- board members
 -- -------------
 
-INSERT INTO boardMembers(username, memberId, boardId)
+INSERT INTO memberships(username, memberId, boardId)
 VALUES('test', 1, 1);
 
-INSERT INTO boardMembers(username, memberId, boardId)
+INSERT INTO memberships(username, memberId, boardId)
 VALUES('jake', 2, 1);
 
 -- posts
