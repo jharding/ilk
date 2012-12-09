@@ -9,7 +9,7 @@ module.exports = base.extend({
 , urls: function(reqs, locals) {
     return {
       createComment: f('/posts/%d/comment', locals.post.id)
-    }
+    };
   }
 
 , comments: function(req, locals) {
