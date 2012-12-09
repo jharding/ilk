@@ -88,4 +88,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.registerTask('dev', ['less:development', 'concat']);
+  grunt.registerTask('db', ['exec:dbdrop', 'exec:dbcreate', 'exec:dbseed']);
 };
