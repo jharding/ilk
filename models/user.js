@@ -28,6 +28,8 @@ User = module.exports = fabio.define({
       validators: fabio.validators.minmax(4, 64)
     , maps: hash
     }
+  , createdAt: {}
+  , updatedAt: {}
   }
 
   // statics

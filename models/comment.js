@@ -20,9 +20,10 @@ Comment = module.exports = fabio.define({
 
   schema: {
     content: {}
-  , postedAt: {}
   , upVotes: {}
   , downVotes: {}
+  , createdAt: {}
+  , updatedAt: {}
   , authorId: {}
   , postId: {}
   }

@@ -21,9 +21,11 @@ Post = module.exports = fabio.define({
   schema: {
     title: {}
   , url: {}
-  , postedAt: {}
   , upVotes: {}
   , downVotes: {}
+  , commentCount: {}
+  , createdAt: {}
+  , updatedAt: {}
   , authorId: {}
   , boardId: {}
   }

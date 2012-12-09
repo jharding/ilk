@@ -21,6 +21,8 @@ Board = module.exports = fabio.define({
   schema: {
     name: {}
   , description: {}
+  , createdAt: {}
+  , updatedAt: {}
   }
 
   // statics
