@@ -17,7 +17,7 @@ module.exports = {
       if (err) { return next(err); }
 
       board
-      .getPosts({ authors: true })
+      .getPosts()
       .value(function(posts) {
         res.view(views.show, { board: board.attrs, posts: posts });
       })

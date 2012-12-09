@@ -1,0 +1,6 @@
+{{<supers/layout}}
+  {{$content}}
+    {{>posts/_editor}}
+    {{>posts/_comments}}
+  {{/content}}
+{{/supers/layout}}

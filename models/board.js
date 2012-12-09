@@ -62,17 +62,13 @@ Board = module.exports = fabio.define({
       // TODO
     }
 
-  , getPosts: function(opts, cb) {
-      var id = this.attrs.id
-        , query = 'SELECT posts.* FROM posts WHERE posts.id=?';
-
-      if (opts.authors) {
-        query = [
-          'SELECT posts.id, posts.title, posts.url, posts.authorId,'
-        , 'boardMembers.username FROM posts INNER JOIN boardMembers'
-        , 'ON posts.authorId=boardMembers.id WHERE posts.boardId=?'
-        ].join(' ');
-      }
+  , getPosts: function(cb) {
+      var id = this.id
+        , query = [
+            'SELECT posts.id, posts.title, posts.url, posts.authorId,'
+          , 'boardMembers.username FROM posts INNER JOIN boardMembers'
+          , 'ON posts.authorId=boardMembers.id WHERE posts.boardId=?'
+          ].join(' ');
 
       db.query(query, [id], function(err, rows) {
         if (err) { return cb(err); }

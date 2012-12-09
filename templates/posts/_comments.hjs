@@ -1,0 +1,7 @@
+<div class="comments">
+  {{#comments}}
+    <div class="comment">
+      <p class="content">{{content}}</p>
+    </div>
+  {{/comments}}
+</div>

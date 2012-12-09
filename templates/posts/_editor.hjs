@@ -1,0 +1,7 @@
+<div class="editor">
+  <form action="" action="{{url}}/comment" method="post">
+    <input type="hidden" name="_csrf" value="{{csrf_token}}" />
+    <textarea name="comment"></textarea>
+    <button class="btn" type="submit">Comment</button>
+  </form>
+</div>

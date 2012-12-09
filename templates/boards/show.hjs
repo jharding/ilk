@@ -8,6 +8,7 @@
   {{#posts}}
   <li>
     <a href="{{url}}">{{title}}</a>
+    <a href="{{comments_url}}">comments</a>
     <p>by: {{username}}</p>
     </li>
   {{/posts}}

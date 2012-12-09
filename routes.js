@@ -32,6 +32,7 @@ module.exports.attachTo = function(app) {
   app.get('/i/:name', boards.show);
 
   // posts
-  app.get('/i/:name/submit', posts.new);
-  app.post('/i/:name/submit', posts.create);
+  app.get('/posts/:id', posts.show);
+  app.get('/i/:boardName/submit', posts.new);
+  app.post('/i/:boardName/submit', posts.create);
 };

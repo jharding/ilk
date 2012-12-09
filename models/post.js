@@ -66,5 +66,20 @@ Post = module.exports = fabio.define({
   , delete: function(attrs, cb) {
       // TODO
     }
+
+  , getComments: function(cb) {
+      var id = this.id
+        , query = [
+            'SELECT comments.id, comments.content, comments.authorId,'
+          , 'boardMembers.username FROM comments INNER JOIN boardMembers'
+          , 'ON comments.authorId=boardMembers.id WHERE comments.postId=?'
+          ].join(' ');
+
+      db.query(query, [id], function(err, rows) {
+        if (err) { return cb(err); }
+
+        cb(null, rows);
+      });
+    }
   }
 });

@@ -1,6 +1,7 @@
 'use strict';
 
 var base = require('../supers/layout')
+  , f = require('util').format
   , url = require('url');
 
 module.exports = base.extend({
@@ -8,7 +9,7 @@ module.exports = base.extend({
 
 , url: function(req, locals) {
     return {
-      path: '/i/' + locals.board.name.toLowerCase()
+      path: f('/i/%s', locals.board.name.toLowerCase())
     };
   }
 
@@ -23,6 +24,7 @@ module.exports = base.extend({
 , posts: function(req, locals) {
     return locals.posts.map(function(post) {
       post.source = url.parse(post.url).hostname;
+      post.comments_url = f('/posts/%d', post.id);
 
       return post;
     });

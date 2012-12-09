@@ -12,9 +12,24 @@ module.exports = {
   // -----
 
   new: function(req, res, next) {
-    var name = req.params.name;
+    var boardName = req.params.boardName;
 
-    res.view(views.new, { board: { name: name } });
+    res.view(views.new, { board: { name: boardName } });
+  }
+
+, show: function(req, res, next) {
+    var id = req.params.id;
+
+    Post.findOne({ id: id }, function(err, post) {
+      if (err) { return next(err); }
+
+      post
+      .getComments()
+      .value(function(comments) {
+        res.view(views.show, { post: post.attrs, comments: comments });
+      })
+      .error(function(err) { next(err); });
+    });
   }
 
   // actions
