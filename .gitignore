@@ -1,5 +1,6 @@
 *.swp
 .DS_Store
 
-public/
+public/js
+public/css
 node_modules/
