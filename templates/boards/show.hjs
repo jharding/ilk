@@ -1,18 +1,6 @@
 {{<supers/layout}}
-{{$content}}
-<h2>{{name}} <small>{{description}}</small></h2>
-
-<a href="{{url.path}}/submit">Submit</a>
-
-<ul>
-  {{#posts}}
-  <li>
-    <a href="{{url}}">{{title}}</a>
-    <a href="{{comments_url}}">comments</a>
-    <p>by: {{username}}</p>
-    </li>
-  {{/posts}}
-</ul>
-
-{{/content}}
+  {{$content}}
+    {{>boards/_metadata}}
+    {{>boards/_posts}}
+  {{/content}}
 {{/supers/layout}}

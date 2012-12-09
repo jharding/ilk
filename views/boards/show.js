@@ -7,9 +7,13 @@ var base = require('../supers/layout')
 module.exports = base.extend({
   template: 'boards/show'
 
-, url: function(req, locals) {
+
+, urls: function(req, locals) {
+    var base = f('/i/%s', locals.board.name.toLowerCase());
+
     return {
-      path: f('/i/%s', locals.board.name.toLowerCase())
+      join: f('%s/join', base)
+    , submit: f('%s/submit', base)
     };
   }
 
