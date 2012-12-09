@@ -5,4 +5,5 @@ module.exports = {
 , users: require('./users.js')
 , boards: require('./boards.js')
 , posts: require('./posts.js')
+, comments: require('./comments.js')
 };

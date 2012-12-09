@@ -36,7 +36,7 @@ module.exports = {
   // -------
 
 , create: function(req, res, next) {
-    var boardName = req.params.name
+    var boardName = req.params.boardName
       , title = req.body.title
       , url = req.body.url
       , user = req.user;
@@ -45,8 +45,8 @@ module.exports = {
       Post.create({
         title: title
       , url: url
-      , boardId: board.attrs.id
-      , authorId: user.attrs.id
+      , boardId: board.id
+      , authorId: user.id
       })
       .value(function(attrs) { res.redirect('/'); })
       .error(function(err) { next(err); });

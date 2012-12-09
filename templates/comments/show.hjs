@@ -1,0 +1,5 @@
+{{<supers/layout}}
+  {{$content}}
+    <p>{{content}}</p>
+  {{/content}}
+{{/supers/layout}}

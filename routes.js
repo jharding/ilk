@@ -9,6 +9,7 @@ var controllers = require('./controllers')
   , users = controllers.users
   , boards = controllers.boards
   , posts = controllers.posts
+  , comments = controllers.comments
 
   // helpers
   , auth = require('./lib/auth');
@@ -35,4 +36,8 @@ module.exports.attachTo = function(app) {
   app.get('/posts/:id', posts.show);
   app.get('/i/:boardName/submit', posts.new);
   app.post('/i/:boardName/submit', posts.create);
+
+  // comments
+  app.get('/comments/:id', comments.show);
+  app.post('/posts/:postId/comment', comments.create);
 };
