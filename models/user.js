@@ -76,6 +76,22 @@ User = module.exports = fabio.define({
         cb(null, same);
       });
     }
+
+  , joinBoard: function(boardId, username, cb) {
+      var that = this
+        , query = 'INSERT INTO memberships SET ?'
+        , attrs = {
+            username: username
+          , boardId: boardId
+          , memberId: this.id
+          };
+
+      db.query(query, attrs, function(err, results) {
+        if (err) { return cb(err); }
+
+        cb(null);
+      });
+    }
   }
 });
 

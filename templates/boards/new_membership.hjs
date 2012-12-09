@@ -1,0 +1,5 @@
+{{<supers/layout}}
+  {{$content}}
+    {{>boards/_membership_form}}
+  {{/content}}
+{{/supers/layout}}

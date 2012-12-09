@@ -31,6 +31,8 @@ module.exports.attachTo = function(app) {
 
   // boards
   app.get('/i/:name', boards.show);
+  app.get('/i/:name/join', boards.newMembership);
+  app.post('/i/:name/join', boards.createMembership);
 
   // posts
   app.get('/posts/:id', posts.show);

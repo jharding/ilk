@@ -1,0 +1,6 @@
+<form class="form-membership" action="{{urls.join}}" method="post">
+  <input type="hidden" name="_csrf" value="{{csrf_token}}">
+  <input type="hidden" name="board[id]" value="{{board.id}}">
+  <input type="text" name="username">
+  <button class="btn" type="submit">Join</button>
+</form>
