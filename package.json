@@ -19,9 +19,13 @@
     "async": "*"
   },
   "devDependencies": {
-    "grunt": "~0.3.0",
-    "grunt-exec": "*",
+    "grunt": "git://github.com/gruntjs/grunt.git#devel",
+    "grunt-cli": "~0.1",
     "grunt-contrib-less": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-exec": "git://github.com/jharding/grunt-exec.git#dev",
     "mocha": "*",
     "sinon": "*",
     "supertest": "*"
