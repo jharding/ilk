@@ -32,14 +32,14 @@ module.exports.attachTo = function(app) {
   // boards
   app.get('/i/:name', boards.show);
   app.get('/i/:name/join', boards.newMembership);
-  app.post('/i/:name/join', boards.createMembership);
+  app.post('/i/:name/join', auth, boards.createMembership);
 
   // posts
-  app.get('/posts/:id', posts.show);
-  app.get('/i/:boardName/submit', posts.new);
-  app.post('/i/:boardName/submit', posts.create);
+  app.get('/posts/:id', auth, posts.show);
+  app.get('/i/:boardName/submit', auth, posts.new);
+  app.post('/i/:boardName/submit', auth, posts.create);
 
   // comments
-  app.get('/comments/:id', comments.show);
-  app.post('/posts/:postId/comment', comments.create);
+  app.get('/comments/:id', auth, comments.show);
+  app.post('/posts/:postId/comment', auth, comments.create);
 };
