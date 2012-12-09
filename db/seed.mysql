@@ -7,6 +7,9 @@ INSERT INTO users(email, password) VALUES('test@test.com',
 INSERT INTO users(email, password) VALUES('jake@test.com',
 '$2a$10$rtQnGl3P0tCw7VRlFl4Nve3dX6VpTtLWi6s8Tax.9YGbx44FlcAki');
 
+INSERT INTO users(email, password) VALUES('new@test.com',
+'$2a$10$rtQnGl3P0tCw7VRlFl4Nve3dX6VpTtLWi6s8Tax.9YGbx44FlcAki');
+
 -- boards
 -- ------
 
