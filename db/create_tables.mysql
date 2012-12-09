@@ -17,6 +17,7 @@ CREATE TABLE memberships(
   username VARCHAR(20) NOT NULL,
   memberId BIGINT UNSIGNED NOT NULL,
   boardId BIGINT UNSIGNED NOT NULL,
+  UNIQUE(memberId, boardId),
   PRIMARY KEY(id),
   FOREIGN KEY(memberId) REFERENCES users(id),
   FOREIGN KEY(boardId) REFERENCES boards(id)
