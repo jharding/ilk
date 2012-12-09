@@ -1,3 +1,5 @@
+'use strict';
+
 // dependencies
 // ------------
 
@@ -36,7 +38,7 @@ Post = module.exports = fabio.define({
       db.query(query, condition, function(err, results) {
         if (err) { return cb(err); }
 
-        cb(null,  results[0] ? Board.load(results[0]) : null);
+        cb(null,  results[0] ? Post.load(results[0]) : null);
       });
     }
   }

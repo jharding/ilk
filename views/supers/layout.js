@@ -1,3 +1,5 @@
+'use strict';
+
 var base = require('../../lib/view_base');
 
 module.exports = base.extend({

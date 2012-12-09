@@ -2,6 +2,8 @@
 // ===================
 // * Copyright (c) 2012 Jake Harding
 
+'use strict';
+
 // module dependencies
 // -------------------
 
@@ -74,6 +76,6 @@ require('./routes').attachTo(app);
 // don't start the server in test enviroment
 if (app.get('env') !== 'test') {
   http.createServer(app).listen(app.get('port'), function() {
-    console.log("Express server listening on port " + app.get('port'));
+    console.log('Express server listening on port ' + app.get('port'));
   });
 }

@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   pages: require('./pages.js')
 , users: require('./users.js')
