@@ -1,6 +1,7 @@
 'use strict';
 
-var base = require('../supers/layout');
+var base = require('../supers/layout')
+  , url = require('url');
 
 module.exports = base.extend({
   template: 'boards/show'
@@ -20,6 +21,10 @@ module.exports = base.extend({
   }
 
 , posts: function(req, locals) {
-    return locals.posts;
+    return locals.posts.map(function(post) {
+      post.source = url.parse(post.url).hostname;
+
+      return post;
+    });
   }
 });
