@@ -67,9 +67,9 @@ Board = module.exports = fabio.define({
   , getPosts: function(cb) {
       var id = this.id
         , query = [
-            'SELECT posts.id, posts.title, posts.url, posts.authorId,'
-          , 'memberships.username FROM posts INNER JOIN memberships'
-          , 'ON posts.authorId=memberships.id WHERE posts.boardId=?'
+            'SELECT posts.*, memberships.username FROM posts'
+          , 'INNER JOIN memberships ON posts.authorId = memberships.id'
+          , 'WHERE posts.boardId = ?'
           ].join(' ');
 
       db.query(query, [id], function(err, rows) {

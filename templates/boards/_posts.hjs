@@ -3,7 +3,7 @@
     {{#posts}}
     <li>
       <a href="{{url}}">{{title}}</a>
-      <a href="{{commentsUrl}}">comments</a>
+      <a href="{{commentsUrl}}">{{commentCount}} comments</a>
       <p>by: {{username}}</p>
       </li>
     {{/posts}}
