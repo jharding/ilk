@@ -28,7 +28,7 @@ module.exports = base.extend({
 , posts: function(req, locals) {
     return locals.posts.map(function(post) {
       post.source = url.parse(post.url).hostname;
-      post.comments_url = f('/posts/%d', post.id);
+      post.commentsUrl = f('/posts/%d', post.id);
 
       return post;
     });

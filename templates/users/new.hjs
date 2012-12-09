@@ -1,7 +1,7 @@
 {{<supers/layout}}
 {{$content}}
 <form class='form-inline' action='/signup' method='post'>
-  <input type='hidden' name='_csrf' value='{{csrf_token}}'>
+  <input type='hidden' name='_csrf' value='{{csrfToken}}'>
   <input type='text' name='email' placeholder='Email'>
   <input type='password' name='password' placeholder='Password'>
   <button class='btn' type='submit'>Sign Up</button>

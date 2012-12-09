@@ -1,7 +1,7 @@
 {{<supers/layout}}
 {{$content}}
 <form class='form-inline' action='/i/board/submit' method='post'>
-  <input type='hidden' name='_csrf' value='{{csrf_token}}'>
+  <input type='hidden' name='_csrf' value='{{csrfToken}}'>
 
   <input name="title" type="text" placeholder="title">
   <input name="url" type="text" placeholder="url">

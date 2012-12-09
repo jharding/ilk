@@ -37,7 +37,7 @@ app.configure(function(){
   app.use(mw.passport.initialize());
   app.use(mw.passport.session());
   app.use(express.csrf());
-  app.use(mw.csrfLocal('csrf_token'));
+  app.use(mw.csrfLocal('csrfToken'));
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
 });

@@ -16,7 +16,7 @@ module.exports = base.extend({
     };
   }
 
-, current_user: function(req, locals, cb) {
+, currentUser: function(req, locals, cb) {
     if (req.user) {
       req.user.value(function(attrs) { cb(null, attrs); });
     }

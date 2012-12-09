@@ -6,8 +6,10 @@ var base = require('../supers/layout')
 module.exports = base.extend({
   template: 'posts/show'
 
-, create_comment_url: function(req, locals) {
-    return f('/posts/%d/comment', locals.post.id);
+, urls: function(reqs, locals) {
+    return {
+      createComment: f('/posts/%d/comment', locals.post.id)
+    }
   }
 
 , comments: function(req, locals) {
