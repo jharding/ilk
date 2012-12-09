@@ -24,7 +24,7 @@ User = module.exports = fabio.define({
     }
   , password: {
       validators: fabio.validators.minmax(4, 64)
-    , map: hash
+    , maps: hash
     }
   }
 
