@@ -23,7 +23,7 @@
   min-height: @navbarHeight;
   padding-left:  20px;
   padding-right: 20px;
-  #gradient > .vertical(@navbarBackgroundHighlight, @navbarBackground);
+  background: @ilkBlue;
   border: 1px solid @navbarBorder;
   .border-radius(@baseBorderRadius);
   .box-shadow(0 1px 4px rgba(0,0,0,.065));
@@ -50,11 +50,10 @@
 .navbar .brand {
   float: left;
   display: block;
-  // Vertically center the text given @navbarHeight
-  padding: ((@navbarHeight - @baseLineHeight) / 2) 20px ((@navbarHeight - @baseLineHeight) / 2);
-  margin-left: -20px; // negative indent to left-align the text down the page
-  font-size: 20px;
-  font-weight: 200;
+  padding: 0;
+  line-height: @navbarHeight;
+  font-size: 38px;
+  font-family: @navbarBrandFontFamily;
   color: @navbarBrandColor;
   text-shadow: 0 1px 0 @navbarBackgroundHighlight;
   &:hover {
@@ -238,7 +237,9 @@
 .navbar .nav > li > a {
   float: none;
   // Vertically center the text given @navbarHeight
-  padding: ((@navbarHeight - @baseLineHeight) / 2) 15px ((@navbarHeight - @baseLineHeight) / 2);
+  padding: ((@navbarHeight - 24) / 2) 30px ((@navbarHeight - 24) / 2);
+  font-size: 16px;
+  line-height: 24px;
   color: @navbarLinkColor;
   text-decoration: none;
   text-shadow: 0 1px 0 @navbarBackgroundHighlight;
@@ -250,7 +251,7 @@
 // Hover
 .navbar .nav > li > a:focus,
 .navbar .nav > li > a:hover {
-  background-color: @navbarLinkBackgroundHover; // "transparent" is default to differentiate :hover from .active
+  background-color: @navbarLinkBackgroundHover;
   color: @navbarLinkColorHover;
   text-decoration: none;
 }
