@@ -12,8 +12,12 @@ module.exports = base.extend({
     var base = f('/i/%s', locals.board.name.toLowerCase());
 
     return {
-      join: f('%s/join', base)
+      canonical: base
+    , join: f('%s/join', base)
     , submit: f('%s/submit', base)
+    , top: f('%s/top', base)
+    , new: f('%s/new', base)
+    , active: f('%s/active', base)
     };
   }
 
