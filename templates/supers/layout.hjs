@@ -17,25 +17,26 @@
       <div class="navbar-inner">
         <div class="container">
           <a class="brand" href="/">ilk</a>
-          <ul class="nav nav-user">
             {{#currentUser}}
-            <li class="dropdown">
-              <a class="dropdown-toggle link-user" href="#"
-              data-toggle="dropdown">{{email}}<b class="caret"></b></a>
+              <ul class="nav nav-account">
+                <li class="dropdown">
+                  <a class="dropdown-toggle" href="#"
+                  data-toggle="dropdown">{{email}}<b class="caret"></b></a>
 
-              <ul class="dropdown-menu">
-                <li class="divider"></li>
-                <li><a href="/logout">Log Out</a></li>
+                  <ul class="dropdown-menu">
+                    <li class="divider"></li>
+                    <li><a href="/logout">Log Out</a></li>
+                  </ul>
+                </li>
               </ul>
-            </li>
             {{/currentUser}}
             {{^currentUser}}
-              <li>
-                <a class="link-user" href="/signup">sign up</a>
-                <a class="link-user" href="/login">log in</a>
-              </li>
+              <div class="header-actions">
+                <a class="btn btn-primary" href="/signup">Sign up</a>
+                <a class="btn" href="/login">Log in</a>
+              </div>
             {{/currentUser}}
-          </ul>
+            </ul>
         </div>
       </div>
     </header>
