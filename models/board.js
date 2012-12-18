@@ -79,5 +79,27 @@ Board = module.exports = fabio.define({
         cb(null, rows);
       });
     }
+
+  , getPostsWithVoteStatusForUser: function(userId, cb) {
+      var id = this.id
+        , query = [
+            'SELECT posts.*, memberships.username, postVotes.voterId FROM posts'
+          , 'INNER JOIN users ON users.id = posts.authorId'
+          , 'INNER JOIN memberships ON memberships.userId = users.id'
+          , 'LEFT JOIN postVotes ON postVotes.postId = posts.id'
+          , 'AND postVotes.voterId = ? WHERE posts.boardId = ?'
+          ].join(' ');
+
+      db.query(query, [userId, id], function(err, rows) {
+        if (err) { return cb(err); }
+
+        rows.forEach(function(row) {
+          row.userVoted = !!row.voterId;
+          delete row.voterId;
+        });
+
+        cb(null, rows);
+      });
+    }
   }
 });

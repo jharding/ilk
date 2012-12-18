@@ -12,17 +12,29 @@ module.exports = {
   // -----
 
   show: function(req, res, next) {
-    var name = req.params.name;
+    var name = req.params.name
+      , user = req.user;
 
     Board.findOne({ name: name }, function(err, board) {
       if (err) { return next(err); }
 
-      board
-      .getPosts()
-      .value(function(posts) {
-        res.view(views.show, { board: board.attrs, posts: posts });
-      })
-      .error(function(err) { next(err); });
+      if (user) {
+        board
+        .getPostsWithVoteStatusForUser(user.id)
+        .value(function(posts) {
+          res.view(views.show, { board: board.attrs, posts: posts });
+        })
+        .error(function(err) { next(err); });
+      }
+
+      else {
+        board
+        .getPosts()
+        .value(function(posts) {
+          res.view(views.show, { board: board.attrs, posts: posts });
+        })
+        .error(function(err) { next(err); });
+      }
     });
   }
 
