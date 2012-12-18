@@ -36,6 +36,7 @@ module.exports.attachTo = function(app) {
 
   // posts
   app.get('/posts/:id', auth, posts.show);
+  app.post('/posts/:id/upvote', auth, posts.upvote);
   app.get('/i/:boardName/submit', auth, posts.new);
   app.post('/i/:boardName/submit', auth, posts.create);
 

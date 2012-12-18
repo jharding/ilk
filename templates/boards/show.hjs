@@ -4,12 +4,11 @@
   {{$navigation}}
     <ul class="nav nav-board">
       <li><a href="{{urls.top}}">Top</a></li>
-      <li><a href="{{urls.active}}">Active</a></li>
       <li><a href="{{urls.new}}">New</a></li>
+      <li><a href="{{urls.submit}}">Submit</a></li>
     </ul>
   {{/navigation}}
   {{$content}}
-    {{>boards/_metadata}}
     {{>boards/_posts}}
   {{/content}}
 {{/supers/layout}}

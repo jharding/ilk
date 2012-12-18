@@ -85,7 +85,7 @@ User = module.exports = fabio.define({
         , attrs = {
             username: username
           , boardId: boardId
-          , memberId: this.id
+          , userId: this.id
           };
 
       db.query(query, attrs, function(err, results) {

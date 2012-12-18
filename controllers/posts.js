@@ -4,6 +4,7 @@
 // ------------
 
 var Post = require('../models/post')
+  , PostVote = require('../models/post_vote')
   , Board = require('../models/board')
   , views = require('../views/posts');
 
@@ -48,8 +49,20 @@ module.exports = {
       , boardId: board.id
       , authorId: user.id
       })
-      .value(function(attrs) { res.redirect('/'); })
+      .value(function(attrs) { res.redirect('/'); }) // TODO
       .error(function(err) { next(err); });
     });
+  }
+
+, upvote: function(req, res, next) {
+    var postId = req.params.id
+      , user = req.user;
+
+    PostVote.create({
+      postId: postId
+    , voterId: user.id
+    })
+    .value(function(attrs) { res.redirect('/'); }) // TODO
+    .error(function(err) { next(err); });
   }
 };

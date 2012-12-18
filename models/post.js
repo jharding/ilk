@@ -21,8 +21,7 @@ Post = module.exports = fabio.define({
   schema: {
     title: {}
   , url: {}
-  , upVotes: {}
-  , downVotes: {}
+  , upvotes: {}
   , commentCount: {}
   , createdAt: {}
   , updatedAt: {}
@@ -73,7 +72,8 @@ Post = module.exports = fabio.define({
       var id = this.id
         , query = [
             'SELECT comments.*, memberships.username FROM comments'
-          , 'INNER JOIN memberships ON comments.authorId=memberships.id'
+          , 'INNER JOIN users ON comments.authorId = users.id'
+          , 'INNER JOIN memberships ON users.id = memberships.userId'
           , 'WHERE comments.postId = ? ORDER BY comments.createdAt ASC'
           ].join(' ');
 

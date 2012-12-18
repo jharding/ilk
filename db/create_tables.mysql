@@ -20,13 +20,12 @@ CREATE TABLE boards(
 ) ENGINE=InnoDB;
 
 CREATE TABLE memberships(
-  id SERIAL,
   username VARCHAR(20) NOT NULL,
-  memberId BIGINT UNSIGNED NOT NULL,
+  userId BIGINT UNSIGNED NOT NULL,
   boardId BIGINT UNSIGNED NOT NULL,
-  UNIQUE(memberId, boardId),
-  PRIMARY KEY(id),
-  FOREIGN KEY(memberId) REFERENCES users(id),
+  UNIQUE(username, boardId),
+  PRIMARY KEY(userId, boardId),
+  FOREIGN KEY(userId) REFERENCES users(id),
   FOREIGN KEY(boardId) REFERENCES boards(id)
 ) ENGINE=InnoDB;
 
@@ -34,31 +33,44 @@ CREATE TABLE posts(
   id SERIAL,
   title VARCHAR(128) NOT NULL,
   url VARCHAR(2083) NOT NULL,
-  upVotes INT NOT NULL DEFAULT 0,
-  downVotes INT NOT NULL DEFAULT 0,
+  upvotes INT NOT NULL DEFAULT 0,
   commentCount INT NOT NULL DEFAULT 0,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updatedAt TIMESTAMP,
   authorId BIGINT UNSIGNED NOT NULL,
   boardId BIGINT UNSIGNED NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(authorId) REFERENCES memberships(id),
+  FOREIGN KEY(authorId) REFERENCES users(id),
   FOREIGN KEY(boardId) REFERENCES boards(id)
 ) ENGINE=InnoDB;
 
 CREATE TABLE comments(
   id SERIAL,
   content TEXT NOT NULL,
-  parent BIGINT UNSIGNED DEFAULT NULL,
-  upVotes INT NOT NULL DEFAULT 0,
-  downVotes INT NOT NULL DEFAULT 0,
+  upvotes INT NOT NULL DEFAULT 0,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updatedAt TIMESTAMP,
   authorId BIGINT UNSIGNED NOT NULL,
   postId BIGINT UNSIGNED NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(authorId) REFERENCES memberships(id),
+  FOREIGN KEY(authorId) REFERENCES users(id),
   FOREIGN KEY(postId) REFERENCES posts(id)
+) ENGINE=InnoDB;
+
+CREATE TABLE postVotes(
+  postId BIGINT UNSIGNED DEFAULT NULL,
+  voterId BIGINT UNSIGNED DEFAULT NULL,
+  PRIMARY KEY(postId, voterId),
+  FOREIGN KEY(postId) REFERENCES posts(id),
+  FOREIGN KEY(voterId) REFERENCES users(id)
+) ENGINE=InnoDB;
+
+CREATE TABLE commentVotes(
+  commentId BIGINT UNSIGNED DEFAULT NULL,
+  voterId BIGINT UNSIGNED DEFAULT NULL,
+  PRIMARY KEY(commentId, voterId),
+  FOREIGN KEY(commentId) REFERENCES comments(id),
+  FOREIGN KEY(voterId) REFERENCES users(id)
 ) ENGINE=InnoDB;
 
 -- triggers
@@ -78,4 +90,12 @@ FOR EACH ROW SET NEW.updatedAt = CURRENT_TIMESTAMP;
 
 CREATE TRIGGER incrementCommentCountForPost AFTER INSERT ON comments
 FOR EACH ROW UPDATE posts
-SET commentCount = commentCount + 1 WHERE id = NEW.postID;
+SET commentCount = commentCount + 1 WHERE id = NEW.postId;
+
+CREATE TRIGGER incrementUpvoteCountForPost AFTER INSERT ON postVotes
+FOR EACH ROW UPDATE posts
+SET upvotes = upvotes + 1 WHERE id = NEW.postId;
+
+CREATE TRIGGER incrementUpvoteCountForComment AFTER INSERT ON commentVotes
+FOR EACH ROW UPDATE comments
+SET upvotes = upvotes + 1 WHERE id = NEW.commentId;
