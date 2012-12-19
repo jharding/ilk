@@ -1,0 +1,47 @@
+// variables
+// ---------
+
+@sans-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+@serif-font-family: Georgia, "Times New Roman", Times, serif;
+@mono-font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+@headings-font-family: Georgia, "Times New Roman", Times, serif;
+
+// default text
+// ------------
+
+body {
+  font-family: @sans-font-family;
+  font-size: 14px;
+  line-height: 20px;
+  color: @text-color;
+}
+
+// phrase tags
+// -----------
+
+em { font-style: italic; }
+cite { font-style: normal; }
+strong { font-weight: bold; }
+
+// headings
+// --------
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: @headings-font-family;
+  font-weight: bold;
+  line-height: 1.2;
+  text-rendering: optimizeLegibility;
+}
+
+h1 { font-size: 38px; }
+h2 { font-size: 32px; }
+h3 { font-size: 24px; }
+h4 { font-size: 18px; }
+h5 { font-size: 14px; }
+h6 { font-size: 12px; }
+
+// links
+// -----
+
+a { color: @link-color; text-decoration: none; }
+a:hover { color: @link-color-hover; text-decoration: underline; }
