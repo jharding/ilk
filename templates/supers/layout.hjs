@@ -26,10 +26,18 @@
           </ul>
         </nav>
 
-        <div class="logged-out-actions">
-          <a class="btn btn-primary" href="/signup">Sign up</a>
-          <a class="btn" href="/login">Log in</a>
+        {{#currentUser}}
+        <div class="user-links user-links-logged-in">
+          <a href="#">{{email}}</a>
         </div>
+        {{/currentUser}}
+
+        {{^currentUser}}
+          <div class="user-links user-links-logged-out">
+            <a class="btn btn-primary" href="/signup">Sign up</a>
+            <a class="btn" href="/login">Log in</a>
+          </div>
+        {{/currentUser}}
       </div>
     </header>
 

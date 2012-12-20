@@ -67,7 +67,19 @@
     }
   }
 
-  .logged-out-actions {
+  .user-links {
     float: right;
+
+    &.user-links-logged-in a {
+      display: inline-block;
+      margin: 5px 0 0 0;
+      font-size: 14px;
+      line-height: 20px;
+      color: #fff;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 }
