@@ -2,11 +2,9 @@
   {{$brand}}<a class="brand" href="{{urls.canonical}}">{{name}}</a>{{/brand}}
 
   {{$navigation}}
-    <ul class="nav nav-board">
-      <li><a href="{{urls.top}}">Top</a></li>
-      <li><a href="{{urls.new}}">New</a></li>
-      <li><a href="{{urls.submit}}">Submit</a></li>
-    </ul>
+    <li><a href="{{urls.top}}">Top</a></li>
+    <li><a href="{{urls.new}}">New</a></li>
+    <li><a href="{{urls.submit}}">Submit</a></li>
   {{/navigation}}
   {{$content}}
     {{>boards/_posts}}

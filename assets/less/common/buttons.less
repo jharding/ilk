@@ -1,0 +1,79 @@
+// variables
+// ---------
+
+@btn-font-size: 12px;
+@btn-line-height: 20px;
+@btn-bg-color: #fff;
+@btn-text-color: #333;
+@btn-border-color: #bbb;
+
+// utilities
+// ---------
+
+.button-background(@start-color, @end-color, @text-color) {
+  color: @text-color;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+  #gradient > .vertical(@start-color, @end-color);
+  border-color: @end-color @end-color darken(@end-color, 15%);
+  border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) fadein(rgba(0,0,0,.1), 15%);
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled = false)"));
+
+  &:hover, &.hover, &:active, &.active, &.disabled, &[disabled] {
+    color: @text-color;
+    background-color: @end-color;
+  }
+
+  &:active, &.active {
+    background-color: darken(@end-color, 10%) e("\9");
+  }
+}
+
+// button core
+// -----------
+
+.btn {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 0; // For input.btn
+  font-size: @btn-font-size;
+  font-weight: bold;
+  line-height: @btn-line-height;
+  color: @btn-text-color;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  .button-background(@btn-bg-color,
+    darken(@btn-bg-color, 10%), @btn-text-color);
+  border: 1px solid @btn-border-color;
+  border-bottom-color: darken(@btn-border-color, 10%);
+  .border-radius(3px);
+  .box-shadow(~"inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
+
+  &:hover, &.hover {
+    text-decoration: none;
+    background-position: 0 -15px;
+    .transition(background-position .1s linear)
+  }
+
+  &:focus, &.focus {
+    // TODO: accessibility
+  }
+
+  &:active, &.active {
+    .box-shadow(~"inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05)");
+  }
+
+  &.disabled, &[disabled] {
+    cursor: default;
+    background-color: darken(@btn-bg-color, 10%);
+    .opacity(65);
+    .box-shadow(none);
+  }
+}
+
+// button types
+// ------------
+
+.btn-primary {
+  .button-background(@ilk-yellow, darken(@ilk-yellow, 10%), #fff);
+}

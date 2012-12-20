@@ -8,38 +8,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   {{#css}}
-  <link rel="stylesheet" href="/css/{{.}}.css">
+    <link rel="stylesheet" href="/css/{{.}}.css">
   {{/css}}
 </head>
 <body id="{{template}}">
   <div class="sticky-footer-wrapper">
-    <header class="navbar navbar-static-top navbar-header">
-      <div class="navbar-inner">
-        <div class="container">
-          {{$brand}}<a class="brand" href="/">ilk</a>{{/brand}}
-          {{$navigation}}{{/navigation}}
+    <header class="navbar">
+      <div class="container navbar-container">
+        <div class="brand">
+          <a class="ilk-logo" href="/"></a><h1>{{$brand}}ilk{{/brand}}</h1>
+        </div>
 
-          {{#currentUser}}
-            <ul class="nav nav-account">
-              <li class="dropdown">
-                <a class="dropdown-toggle" href="#"
-                data-toggle="dropdown">{{email}}<b class="caret"></b></a>
+        <ul class="nav">{{$navigation}}{{/navigation}}</ul>
 
-                <ul class="dropdown-menu">
-                  <li class="divider"></li>
-                  <li><a href="/logout">Log Out</a></li>
-                </ul>
-              </li>
-            </ul>
-          {{/currentUser}}
-
-          {{^currentUser}}
-            <div class="header-actions">
-              <a class="btn btn-primary" href="/signup">Sign up</a>
-              <a class="btn" href="/login">Log in</a>
-            </div>
-          {{/currentUser}}
-          </ul>
+        <div class="logged-out-actions">
+          <a class="btn btn-primary" href="/signup">Sign up</a>
+          <a class="btn" href="/login">Log in</a>
         </div>
       </div>
     </header>
@@ -54,7 +38,7 @@
     <div class="container container-footer"></div>
   </footer>
   {{#js}}
-  <script type="text/javascript" src="/js/{{.}}.js"></script>
+    <script type="text/javascript" src="/js/{{.}}.js"></script>
   {{/js}}
   {{>layouts/_google_analytics}}
 </body>

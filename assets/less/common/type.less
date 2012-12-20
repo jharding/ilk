@@ -1,6 +1,10 @@
 // variables
 // ---------
 
+@text-color: #333;
+@link-color: red;
+@link-color-hover: darken(@link-color, 15%);
+
 @sans-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 @serif-font-family: Georgia, "Times New Roman", Times, serif;
 @mono-font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
@@ -27,6 +31,7 @@ strong { font-weight: bold; }
 // --------
 
 h1, h2, h3, h4, h5, h6 {
+  margin: 0;
   font-family: @headings-font-family;
   font-weight: bold;
   line-height: 1.2;
