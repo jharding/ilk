@@ -12,9 +12,6 @@ module.exports = function(grunt) {
     , clientcss: {
         files: ['assets/less/**/*.less']
       , tasks: ['less:development']
-      , options: {
-          forceWatchMethod: 'old'
-        }
       }
     }
 
