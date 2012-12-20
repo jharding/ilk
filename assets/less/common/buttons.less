@@ -10,9 +10,9 @@
 // utilities
 // ---------
 
-.button-background(@start-color, @end-color, @text-color) {
+.button-background(@start-color, @end-color, @text-color, @text-shadow) {
   color: @text-color;
-  text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+  text-shadow: @text-shadow;
   #gradient > .vertical(@start-color, @end-color);
   border-color: @end-color @end-color darken(@end-color, 15%);
   border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) fadein(rgba(0,0,0,.1), 15%);
@@ -42,8 +42,8 @@
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  .button-background(@btn-bg-color,
-    darken(@btn-bg-color, 10%), @btn-text-color);
+  .button-background(@btn-bg-color, darken(@btn-bg-color, 10%),
+    @btn-text-color, rgba(255,255,255,.75));
   border: 1px solid @btn-border-color;
   border-bottom-color: darken(@btn-border-color, 10%);
   .border-radius(3px);
@@ -75,5 +75,6 @@
 // ------------
 
 .btn-primary {
-  .button-background(@ilk-yellow, darken(@ilk-yellow, 10%), #fff);
+  .button-background(@ilk-yellow, darken(@ilk-yellow, 10%),
+    #fff, rgba(0,0,0,.25));
 }

@@ -1,33 +1,69 @@
-// header navbar
-// -------------
+// header
+// ------
 
-.navbar {
-  background: @ilk-blue;
-}
+.header {
+  padding: 8px 0;
+  #gradient .vertical(lighten(@ilk-blue, 5%), @ilk-blue);
+  .box-shadow(~"0 1px 10px rgba(0,0,0,.1)");
 
-.navbar-container {
-  .clearfix();
+  .container {
+    .clearfix();
+  }
 
   .brand {
-    float:left;
+    float: left;
+    font-size: 0;
 
     .ilk-logo {
       display: inline-block;
-      width: 50px;
-      height: 50px;
-      background: black;
+      vertical-align: top;
+      // TODO
     }
 
-    h1 {
+    h1, h1 a {
       display: inline-block;
+      font-size: 24px;
+      line-height: 30px;
+      color: #fff;
+      text-shadow: 0 1px 0 @ilk-blue;
+      vertical-align: top;
+    }
+
+    h1 a:hover {
+      text-decoration: none;
     }
   }
 
-  .nav {
+  .navigation {
     float: left;
+  }
 
-    li {
+  .tabs {
+    display: inline-block;
+    margin: 0;
+
+    > li {
       display: inline-block;
+
+      > a {
+        display: inline-block;
+        margin: 2px 10px 0 10px;
+        padding: 3px 6px;
+        font-size: 14px;
+        line-height: 20px;
+        color: #fff;
+        text-shadow: 0 1px 0 @ilk-blue;
+
+        &:hover, &.hover {
+          color: @ilk-yellow;
+          text-decoration: none;
+          .transition(color .1s linear);
+        }
+
+        &.selected {
+          font-weight: bold;
+        }
+      }
     }
   }
 

@@ -13,13 +13,18 @@
 </head>
 <body id="{{template}}">
   <div class="sticky-footer-wrapper">
-    <header class="navbar">
-      <div class="container navbar-container">
+    <header class="header">
+      <div class="container">
         <div class="brand">
-          <a class="ilk-logo" href="/"></a><h1>{{$brand}}ilk{{/brand}}</h1>
+          <a class="ilk-logo" href="/"></a>
+          <h1>{{$brand}}<a href="/">ilk</a>{{/brand}}</h1>
         </div>
 
-        <ul class="nav">{{$navigation}}{{/navigation}}</ul>
+        <nav class="navigation">
+          <ul class="tabs">
+            {{$navigation}}{{/navigation}}
+          </ul>
+        </nav>
 
         <div class="logged-out-actions">
           <a class="btn btn-primary" href="/signup">Sign up</a>

@@ -1,5 +1,5 @@
 {{<supers/layout}}
-  {{$brand}}<a class="brand" href="{{urls.canonical}}">{{name}}</a>{{/brand}}
+  {{$brand}}<a href="{{urls.canonical}}">{{name}}</a>{{/brand}}
 
   {{$navigation}}
     <li><a href="{{urls.top}}">Top</a></li>
