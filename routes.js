@@ -30,7 +30,10 @@ module.exports.attachTo = function(app) {
   app.get('/logout', auth.logout);
 
   // boards
-  app.get('/i/:name', boards.show);
+  app.get('/i/:name', boards.showTop);
+  app.get('/i/:name/top', boards.showTop);
+  app.get('/i/:name/active', boards.showActive);
+  app.get('/i/:name/new', boards.showNew);
   app.get('/i/:name/join', boards.newMembership);
   app.post('/i/:name/join', auth, boards.createMembership);
 

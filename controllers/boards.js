@@ -11,31 +11,25 @@ module.exports = {
   // pages
   // -----
 
-  show: function(req, res, next) {
-    var name = req.params.name
-      , user = req.user;
+  showTop: function(req, res, next) {
+    var args = [].slice.call(arguments, 0);
+    args.unshift('top');
 
-    Board.findOne({ name: name }, function(err, board) {
-      if (err) { return next(err); }
+    show.apply(this, args);
+  }
 
-      if (user) {
-        board
-        .getPostsWithVoteStatusForUser(user.id)
-        .value(function(posts) {
-          res.view(views.show, { board: board.attrs, posts: posts });
-        })
-        .error(function(err) { next(err); });
-      }
+, showActive: function(req, res, next) {
+    var args = [].slice.call(arguments, 0);
+    args.unshift('active');
 
-      else {
-        board
-        .getPosts()
-        .value(function(posts) {
-          res.view(views.show, { board: board.attrs, posts: posts });
-        })
-        .error(function(err) { next(err); });
-      }
-    });
+    show.apply(this, args);
+  }
+
+, showNew: function(req, res, next) {
+    var args = [].slice.call(arguments, 0);
+    args.unshift('new');
+
+    show.apply(this, args);
   }
 
 , newMembership: function(req, res, next) {
@@ -67,3 +61,30 @@ module.exports = {
     .error(function(err) { next(err); });
   }
 };
+
+// helper functions
+// ----------------
+
+function show(algorithm, req, res, next) {
+  var name = req.params.name
+    , user = req.user;
+
+  Board.findOne({ name: name }, function(err, board) {
+    if (err) { return next(err); }
+
+    board
+    .getPosts({
+      algorithm: algorithm
+    , includeVotesForUser: user && { userId: user.id }
+    })
+    .value(function(posts) {
+      res.view(views.show, {
+        algorithm: algorithm
+      , board: board.attrs
+      , posts: posts
+      });
+    })
+    .error(function(err) { next(err); });
+  });
+}
+

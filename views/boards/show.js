@@ -7,6 +7,14 @@ var base = require('../supers/layout')
 module.exports = base.extend({
   template: 'boards/show'
 
+, page: function(req, locals) {
+    return {
+      isTop: locals.algorithm === 'top'
+    , isActive: locals.algorithm === 'active'
+    , isNew: locals.algorithm === 'new'
+    , isSubmit: locals.algorithm === undefined
+    };
+  }
 
 , urls: function(req, locals) {
     var base = f('/i/%s', locals.board.name.toLowerCase());

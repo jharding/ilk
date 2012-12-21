@@ -64,39 +64,59 @@ Board = module.exports = fabio.define({
       // TODO
     }
 
-  , getPosts: function(cb) {
+  , getPosts: function(opts, cb) {
       var id = this.id
         , query = [
-            'SELECT posts.*, memberships.username FROM posts'
+            'SELECT * FROM'
+          , '(SELECT posts.*, memberships.username AS authorName FROM posts'
           , 'INNER JOIN users ON posts.authorId = users.id'
           , 'INNER JOIN memberships ON users.id = memberships.userId'
-          , 'WHERE posts.boardId = ?'
-          ].join(' ');
+          , 'WHERE posts.boardId = ?) AS postsWithAuthor'
+          ].join(' ')
+        , values = [id]
+        , transforms = [];
 
-      db.query(query, [id], function(err, rows) {
-        if (err) { return cb(err); }
 
-        cb(null, rows);
-      });
-    }
+      if (opts.includeVotesForUser) {
+        query = [
+          query
+        , 'LEFT JOIN postVotes ON postVotes.postId = postsWithAuthor.id'
+        , 'AND postVotes.voterId = ?'
+        ].join(' ');
 
-  , getPostsWithVoteStatusForUser: function(userId, cb) {
-      var id = this.id
-        , query = [
-            'SELECT posts.*, memberships.username, postVotes.voterId FROM posts'
-          , 'INNER JOIN users ON users.id = posts.authorId'
-          , 'INNER JOIN memberships ON memberships.userId = users.id'
-          , 'LEFT JOIN postVotes ON postVotes.postId = posts.id'
-          , 'AND postVotes.voterId = ? WHERE posts.boardId = ?'
-          ].join(' ');
+        values.push(opts.includeVotesForUser.userId);
 
-      db.query(query, [userId, id], function(err, rows) {
-        if (err) { return cb(err); }
-
-        rows.forEach(function(row) {
+        transforms.push(function(row) {
           row.userVoted = !!row.voterId;
           delete row.voterId;
         });
+      }
+
+      if (opts.algorithm === 'top') {
+        query = [
+          query
+        , 'ORDER BY (postsWithAuthor.upvotes - 1) /'
+        , 'POW(((UNIX_TIMESTAMP(NOW()) -'
+        , 'UNIX_TIMESTAMP(postsWithAuthor.createdAt)) / 3600) + 2, 1.5) DESC'
+        ].join(' ');
+      }
+
+      else if (opts.algorithm === 'active') {
+        query = [query , 'ORDER BY lastCommentPostedAt DESC'].join(' ');
+      }
+
+      else if (opts.algorithm === 'new') {
+        query = [query , 'ORDER BY createdAt DESC'].join(' ');
+      }
+
+      else {
+        return cb(new Error('Invalid algorithm'));
+      }
+
+      db.query(query, values, function(err, rows) {
+        if (err) { return cb(err); }
+
+        transforms.forEach(function(transform) { rows.forEach(transform); });
 
         cb(null, rows);
       });

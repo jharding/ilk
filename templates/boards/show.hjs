@@ -2,10 +2,22 @@
   {{$brand}}<a href="{{urls.canonical}}">{{name}}</a>{{/brand}}
 
   {{$navigation}}
-    <li><a href="{{urls.top}}">Top</a></li>
-    <li><a href="{{urls.active}}">Active</a></li>
-    <li><a href="{{urls.new}}">New</a></li>
-    <li><a href="{{urls.submit}}">Submit</a></li>
+    <li>
+      <a class="{{#page.isTop}}selected{{/page.isTop}}"
+      href="{{urls.top}}">Top</a>
+    </li>
+    <li>
+      <a class="{{#page.isActive}}selected{{/page.isActive}}"
+      href="{{urls.active}}">Active</a>
+    </li>
+    <li>
+      <a class="{{#page.isNew}}selected{{/page.isNew}}"
+      href="{{urls.new}}">New</a>
+    </li>
+    <li>
+      <a class="{{#page.isSubmit}}selected{{/page.isSubmit}}"
+      href="{{urls.submit}}">Submit</a>
+    </li>
   {{/navigation}}
   {{$content}}
     {{>boards/_posts}}

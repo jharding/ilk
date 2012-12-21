@@ -13,7 +13,7 @@
         </h2>
         <div class="metadata">
           <p>
-            number points &#183; by <a href="#">{{username}}</a> &#183;
+            {{upvotes}} points &#183; by <a href="#">{{authorName}}</a> &#183;
             time ago &#183;
             <a href="{{commentsUrl}}">{{commentCount}} comments</a>
           </p>
