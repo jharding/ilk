@@ -37,6 +37,7 @@ CREATE TABLE posts(
   commentCount INT NOT NULL DEFAULT 0,
   createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updatedAt TIMESTAMP,
+  lastCommentPostedAt TIMESTAMP,
   authorId BIGINT UNSIGNED NOT NULL,
   boardId BIGINT UNSIGNED NOT NULL,
   PRIMARY KEY(id),
@@ -88,9 +89,11 @@ FOR EACH ROW SET NEW.updatedAt = CURRENT_TIMESTAMP;
 CREATE TRIGGER setUpdatedAtForComment BEFORE INSERT ON comments
 FOR EACH ROW SET NEW.updatedAt = CURRENT_TIMESTAMP;
 
-CREATE TRIGGER incrementCommentCountForPost AFTER INSERT ON comments
+CREATE TRIGGER setLastCommentPostedAtAndIncrementCommentCountForPost
+AFTER INSERT ON comments
 FOR EACH ROW UPDATE posts
-SET commentCount = commentCount + 1 WHERE id = NEW.postId;
+SET lastCommentPostedAt = NOW(), commentCount = commentCount + 1
+WHERE id = NEW.postId;
 
 CREATE TRIGGER incrementUpvoteCountForPost AFTER INSERT ON postVotes
 FOR EACH ROW UPDATE posts
