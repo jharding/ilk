@@ -16,10 +16,11 @@
     "passport-local": "*",
     "bcrypt": "*",
     "underscore": "*",
-    "async": "*"
+    "async": "*",
+    "relative-date": "*"
   },
   "devDependencies": {
-    "grunt": "git://github.com/gruntjs/grunt.git#devel",
+    "grunt": "git://github.com/gruntjs/grunt.git",
     "grunt-cli": "~0.1",
     "grunt-contrib-less": "*",
     "grunt-contrib-watch": "*",

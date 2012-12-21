@@ -14,7 +14,7 @@
         <div class="metadata">
           <p>
             {{upvotes}} points &#183; by <a href="#">{{authorName}}</a> &#183;
-            time ago &#183;
+            {{createdAt}} &#183;
             <a href="{{commentsUrl}}">{{commentCount}} comments</a>
           </p>
         </div>

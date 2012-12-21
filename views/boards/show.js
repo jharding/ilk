@@ -2,7 +2,8 @@
 
 var base = require('../supers/layout')
   , f = require('util').format
-  , url = require('url');
+  , url = require('url')
+  , relativeDate = require('relative-date');
 
 module.exports = base.extend({
   template: 'boards/show'
@@ -41,6 +42,7 @@ module.exports = base.extend({
     return locals.posts.map(function(post) {
       post.source = url.parse(post.url).hostname;
       post.commentsUrl = f('/posts/%d', post.id);
+      post.createdAt = relativeDate(post.createdAt);
 
       return post;
     });
