@@ -15,7 +15,11 @@ module.exports = {
   new: function(req, res, next) {
     var boardName = req.params.boardName;
 
-    res.view(views.new, { board: { name: boardName } });
+    Board.findOne({ name: boardName }, function(err, board) {
+      if (err) { return next(err); }
+
+      res.view(views.new, { board: board.attrs });
+    });
   }
 
 , show: function(req, res, next) {
