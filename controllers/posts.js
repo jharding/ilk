@@ -25,9 +25,16 @@ module.exports = {
       if (err) { return next(err); }
 
       post
+      .getBoard()
+      .getAuthor()
       .getComments()
-      .then(function(comments) {
-        res.view(views.show, { post: post.attrs, comments: comments });
+      .values(function(attrs, board, author, comments) {
+        res.view(views.show, {
+          post: attrs
+        , board: board
+        , author: author
+        , comments: comments
+        });
       })
       .error(function(err) { next(err); });
     });

@@ -68,6 +68,29 @@ Post = module.exports = fabio.define({
       // TODO
     }
 
+  , getBoard: function(cb) {
+      var boardId = this.attrs.boardId
+        , query = 'SELECT * FROM boards WHERE id = ?';
+
+      db.query(query, [boardId], function(err, row) {
+        if (err) { return cb(err); }
+
+        cb(null, row[0]);
+      });
+    }
+
+  , getAuthor: function(cb) {
+      var authorId = this.attrs.authorId
+        , boardId = this.attrs.boardId
+        , query = 'SELECT * FROM  memberships WHERE userId = ? AND boardId = ?';
+
+      db.query(query, [authorId, boardId], function(err, row) {
+        if (err) { return cb(err); }
+
+        cb(null, row[0]);
+      });
+    }
+
   , getComments: function(cb) {
       var id = this.id
         , query = [

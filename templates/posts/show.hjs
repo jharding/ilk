@@ -1,5 +1,16 @@
 {{<supers/layout}}
   {{$content}}
+    <h2>
+      <a target="_blank" href="{{post.url}}">{{post.title}}</a>
+      <small>{{post.source}}</small>
+    </h2>
+    <div class="metadata">
+      <p>
+        {{post.upvotes}} points &#183; by <a href="#">{{author.name}}</a>
+        &#183; {{post.createdAt}}
+      </p>
+    </div>
+
     {{>posts/_editor}}
     {{>posts/_comments}}
   {{/content}}
