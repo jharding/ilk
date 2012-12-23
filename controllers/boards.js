@@ -77,10 +77,10 @@ function show(algorithm, req, res, next) {
       algorithm: algorithm
     , includeVotesForUser: user && { userId: user.id }
     })
-    .then(function(posts) {
+    .values(function(attrs, posts) {
       res.view(views.show, {
         algorithm: algorithm
-      , board: board.attrs
+      , board: attrs
       , posts: posts
       });
     })
