@@ -8,7 +8,15 @@ var base = require('../supers/layout')
 module.exports = base.extend({
   template: 'boards/show'
 
-, page: function(req, locals) {
+, title: function(req, locals) {
+    return locals.board.name;
+  }
+
+, description: function(req, locals) {
+    return locals.board.description;
+  }
+
+, nav: function(req, locals) {
     return {
       isTop: locals.algorithm === 'top'
     , isActive: locals.algorithm === 'active'
@@ -30,12 +38,15 @@ module.exports = base.extend({
     };
   }
 
-, name: function(req, locals) {
-    return locals.board.name;
-  }
+, board: function(req, locals) {
+    var board = locals.board;
 
-, description: function(req, locals) {
-    return locals.board.description;
+    return {
+      id: board.id
+    , name: board.name
+    , description: board.description
+    , createdAt: board.createdAt // TODO: format timestamp
+    };
   }
 
 , posts: function(req, locals) {

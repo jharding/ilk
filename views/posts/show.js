@@ -55,7 +55,7 @@ module.exports = base.extend({
       , author: {
           id: comment.authorId
         }
-      }
+      };
     });
   }
 });

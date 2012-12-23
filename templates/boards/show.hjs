@@ -1,21 +1,21 @@
 {{<supers/layout}}
-  {{$brand}}<a href="{{urls.canonical}}">{{name}}</a>{{/brand}}
+  {{$brand}}<a href="{{urls.canonical}}">{{board.name}}</a>{{/brand}}
 
   {{$navigation}}
     <li>
-      <a class="{{#page.isTop}}selected{{/page.isTop}}"
+      <a class="{{#nav.isTop}}selected{{/nav.isTop}}"
       href="{{urls.top}}">Top</a>
     </li>
     <li>
-      <a class="{{#page.isActive}}selected{{/page.isActive}}"
+      <a class="{{#nav.isActive}}selected{{/nav.isActive}}"
       href="{{urls.active}}">Active</a>
     </li>
     <li>
-      <a class="{{#page.isNew}}selected{{/page.isNew}}"
+      <a class="{{#nav.isNew}}selected{{/nav.isNew}}"
       href="{{urls.new}}">New</a>
     </li>
     <li>
-      <a class="{{#page.isSubmit}}selected{{/page.isSubmit}}"
+      <a class="{{#nav.isSubmit}}selected{{/nav.isSubmit}}"
       href="{{urls.submit}}">Submit</a>
     </li>
   {{/navigation}}

@@ -6,6 +6,13 @@ var base = require('../supers/layout')
 module.exports = base.extend({
   template: 'boards/new_membership'
 
+, title: function(req, locals) {
+    return f('Join %s', locals.board.name);
+  }
+
+, description: function(req, locals) {
+    return f('Join the %s board on Ilk', locals.board.name);
+  }
 
 , urls: function(req, locals) {
     var base = f('/i/%s', locals.board.name.toLowerCase());
@@ -16,6 +23,13 @@ module.exports = base.extend({
   }
 
 , board: function(req, locals) {
-    return locals.board;
+    var board = locals.board;
+
+    return {
+      id: board.id
+    , name: board.name
+    , description: board.description
+    , createdAt: board.createdAt // TODO: format timestamp
+    };
   }
 });
