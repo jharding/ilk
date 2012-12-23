@@ -7,6 +7,8 @@ module.exports = base.extend({
 
 , js: ['vendor', 'core']
 
+, title: 'Ilk'
+
 , flash: function(req, locals) {
     return {
       success: req.flash('success')
