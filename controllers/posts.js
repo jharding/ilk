@@ -26,7 +26,7 @@ module.exports = {
 
       post
       .getComments()
-      .value(function(comments) {
+      .then(function(comments) {
         res.view(views.show, { post: post.attrs, comments: comments });
       })
       .error(function(err) { next(err); });
@@ -49,7 +49,7 @@ module.exports = {
       , boardId: board.id
       , authorId: user.id
       })
-      .value(function(attrs) { res.redirect('/'); }) // TODO
+      .then(function(attrs) { res.redirect('/'); }) // TODO
       .error(function(err) { next(err); });
     });
   }
@@ -62,7 +62,7 @@ module.exports = {
       postId: postId
     , voterId: user.id
     })
-    .value(function(attrs) { res.redirect('/'); }) // TODO
+    .then(function(attrs) { res.redirect('/'); }) // TODO
     .error(function(err) { next(err); });
   }
 };

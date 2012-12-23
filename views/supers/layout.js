@@ -18,7 +18,7 @@ module.exports = base.extend({
 
 , currentUser: function(req, locals, cb) {
     if (req.user) {
-      req.user.value(function(attrs) { cb(null, attrs); });
+      req.user.then(function(attrs) { cb(null, attrs); });
     }
 
     else {

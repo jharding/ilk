@@ -18,7 +18,7 @@ module.exports = {
       if (err) { return next(err); }
 
       comment
-      .value(function(attrs) {
+      .then(function(attrs) {
         res.view(views.show, { comment: attrs });
       })
       .error(function(err) { next(err); });
@@ -38,7 +38,7 @@ module.exports = {
     , postId: postId
     , authorId: user.id
     })
-    .value(function(attrs) { res.redirect(f('/posts/%d', postId)); })
+    .then(function(attrs) { res.redirect(f('/posts/%d', postId)); })
     .error(function(err) { next(err); });
   }
 };

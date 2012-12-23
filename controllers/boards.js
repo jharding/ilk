@@ -39,7 +39,7 @@ module.exports = {
       if (err) { return next(err); }
 
       board
-      .value(function(attrs) {
+      .then(function(attrs) {
         res.view(views.newMembership, { board: attrs });
       })
       .error(function(err) { next(err); });
@@ -57,7 +57,7 @@ module.exports = {
 
     user
     .joinBoard(boardId, username)
-    .value(function() { res.redirect(f('/i/%s', boardName)); })
+    .then(function() { res.redirect(f('/i/%s', boardName)); })
     .error(function(err) { next(err); });
   }
 };
@@ -77,7 +77,7 @@ function show(algorithm, req, res, next) {
       algorithm: algorithm
     , includeVotesForUser: user && { userId: user.id }
     })
-    .value(function(posts) {
+    .then(function(posts) {
       res.view(views.show, {
         algorithm: algorithm
       , board: board.attrs

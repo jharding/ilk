@@ -26,7 +26,7 @@ module.exports = {
       email: req.body.email
     , password: req.body.password
     })
-    .value(function(attrs) {
+    .then(function(attrs) {
       res.redirect('/');
     })
     .error(function(err) { next(err); });
