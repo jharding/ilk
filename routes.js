@@ -44,6 +44,5 @@ module.exports.attachTo = function(app) {
   app.post('/i/:boardName/submit', auth, posts.create);
 
   // comments
-  app.get('/comments/:id', auth, comments.show);
   app.post('/posts/:postId/comment', auth, comments.create);
 };
